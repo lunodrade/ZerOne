@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lunodrade.zerone.fragment.ScrollFragment"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle1"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription1"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle2"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription2"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle3"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription3"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle4"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription4"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle5"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription5"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle6"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription6"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle7"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription7"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle8"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription8"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txttitle9"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.87"
+            android:textColor="@android:color/black"
+            android:text="Dessert Name"/>
+
+        <TextView
+            android:id="@+id/item_simplevh_txtdescription9"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:alpha="0.54"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:text="A really long description of the dessert, with a maximum three lines."/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/black"/>
+
+    </LinearLayout>
+
+</FrameLayout>

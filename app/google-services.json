@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "948897991608",
+    "firebase_url": "https://zerone-e7096.firebaseio.com",
+    "project_id": "zerone-e7096",
+    "storage_bucket": "zerone-e7096.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948897991608:android:9cb4fbc9596d410b",
+        "android_client_info": {
+          "package_name": "com.lunodrade.zerone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948897991608-r28n7a6lrp4ikqfclbauc995ncb9vug8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lunodrade.zerone",
+            "certificate_hash": "002ec47a77b2996308b84a55c5d0160b38013811"
+          }
+        },
+        {
+          "client_id": "948897991608-bf0aaii1lhu2naksj2j4gucdtaqamva4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy0X0rpnYw-DCx15JIlgcJ6pklqU1gH3w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948897991608-bf0aaii1lhu2naksj2j4gucdtaqamva4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
