@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "948897991608-923ro1j78fcd8qecmfvldc7jigcfaadg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lunodrade.zerone",
+            "certificate_hash": "4a2a9d27c41ab020e55fb1f1b8209483fb64159f"
+          }
+        },
+        {
           "client_id": "948897991608-r28n7a6lrp4ikqfclbauc995ncb9vug8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -36,13 +36,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class ProfileFragment extends Fragment {
 
-    /*
     @BindView(R.id.profile_user_photo) CircleImageView mPhotoImage;
     @BindView(R.id.profile_user_name) TextView mNameView;
     @BindView(R.id.profile_user_level) TextView mLevelView;
     @BindView(R.id.profile_user_score) TextView mScoreView;
     @BindView(R.id.profile_user_room) TextView mRoomView;
-    */
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
@@ -130,24 +128,21 @@ public class ProfileFragment extends Fragment {
         if (getActivity() == null)
             return;
 
-        /*
         if (user.profilePhoto != null ) {
             Glide.with(this)
                     .load(user.profilePhoto)
                     .into(mPhotoImage);
         }
-
         mNameView.setText(user.name);
 
         mScoreView.setText( ""+user.xp );
         mLevelView.setText( ""+ getLvlForXP(user.xp) );
 
         if(user.activeRoomId != null) {
-            mRoomView.setText(user.activeRoomName);
+            mRoomView.setText("Você está na sala com nome: " + user.activeRoomName);
         } else {
             mRoomView.setText("Sem sala, entre em uma ;)");
         }
-        */
     }
 
     public static int getLvlForXP(int xp) {

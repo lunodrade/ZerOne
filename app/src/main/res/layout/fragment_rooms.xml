@@ -7,41 +7,41 @@
 
     <!-- Parte caso o usuário não possua nenhuma turma -->
     <android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="2dp"
+    android:id="@+id/room_block_without_card"
+    android:visibility="gone"
+    android:layout_margin="16dp">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="2dp"
-        android:id="@+id/room_block_without_card"
-        android:visibility="gone"
-        android:layout_margin="16dp">
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_door" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg_door" />
-            <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Você está em uma turma"
-                    android:textColor="#000"
-                    android:textSize="18sp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Agora faça os exercícios e acumule pontos"
-                    android:textColor="#555" />
-            </LinearLayout>
+                android:layout_marginBottom="8dp"
+                android:text="Você está em uma turma"
+                android:textColor="#000"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agora faça os exercícios e acumule pontos"
+                android:textColor="#555" />
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
 
     <!-- Parte caso o usuário possua alguma turma -->
     <android.support.v7.widget.CardView
