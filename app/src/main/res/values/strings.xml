@@ -16,8 +16,16 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-
     <!-- ==================================================================================== -->
     <string name="fragment_rooms_code_error">Não existe nenhuma turma com o código inserido</string>
+
+    <string name="title_1">Arrays I</string>
+    <string name="title_2">Vetores I</string>
+    <string name="title_3">Lógica</string>
+    <string name="title_4">Vetores II</string>
+
+    <string name="text_1">Aqui poderia ir uma breve descrição desse módulo.</string>
+    <string name="title_activity_exercise">ExerciseActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

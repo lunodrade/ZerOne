@@ -77,6 +77,10 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        //TODO: passar tudo aqui pro createView
+
+
         ButterKnife.bind(this, view);
 
         mDatabase =  FirebaseDatabase.getInstance().getReference();

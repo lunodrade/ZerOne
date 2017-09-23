@@ -40,9 +40,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.lunodrade.zerone.fragment.HomeFragment;
 import com.lunodrade.zerone.fragment.ProfileFragment;
 import com.lunodrade.zerone.fragment.RoomsFragment;
-import com.lunodrade.zerone.fragment.ScrollFragment;
 import com.lunodrade.zerone.models.User;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
@@ -115,14 +115,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onTabSelected(@IdRes int tabId) {
 
-                fragment = new ScrollFragment();
+                fragment = new HomeFragment();
 
                 if (tabId == R.id.tab_home) {
                     // The tab with id R.id.tab_favorites was selected,
                     // change your content accordingly.
                     toolbar.setTitle("Início");
-                    //fragment = new HomeFragment();
-                    fragment = new ScrollFragment();
+                    fragment = new HomeFragment();
                 }
 
                 else if (tabId == R.id.tab_rooms) {
@@ -136,7 +135,7 @@ public class MainActivity extends AppCompatActivity
                     // The tab with id R.id.tab_favorites was selected,
                     // change your content accordingly.
 
-                    toolbar.setTitle("Perfil");
+                    toolbar.setTitle("");
                     fragment = new ProfileFragment();
                 }
 
@@ -235,15 +234,6 @@ public class MainActivity extends AppCompatActivity
         return mUserClass;
     }
 
-    public int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -281,6 +271,21 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void showSnackbar(@StringRes int errorMessageRes) {
         View mRootView = this.findViewById(R.id.placeSnackBar);

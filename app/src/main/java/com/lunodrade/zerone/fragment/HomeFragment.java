@@ -1,13 +1,24 @@
 package com.lunodrade.zerone.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.lunodrade.zerone.ExerciseActivity;
+import com.lunodrade.zerone.LoginActivity;
+import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
+import com.lunodrade.zerone.bookcards.CardItem;
+import com.lunodrade.zerone.bookcards.CardPagerAdapter;
+import com.lunodrade.zerone.bookcards.ShadowTransformer;
 
 
 /**
@@ -15,6 +26,11 @@ import com.lunodrade.zerone.R;
  */
 public class HomeFragment extends Fragment {
 
+    private MainActivity mActivity;
+
+    private ViewPager mViewPager;
+    private CardPagerAdapter mCardAdapter;
+    private ShadowTransformer mCardShadowTransformer;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -25,7 +41,52 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        mActivity = (MainActivity) getActivity();
+
+        mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
+
+        mCardAdapter = new CardPagerAdapter(this);
+        mCardAdapter.addCardItem(new CardItem(R.string.title_1, R.string.text_1));
+        mCardAdapter.addCardItem(new CardItem(R.string.title_2, R.string.text_1));
+        mCardAdapter.addCardItem(new CardItem(R.string.title_3, R.string.text_1));
+        mCardAdapter.addCardItem(new CardItem(R.string.title_4, R.string.text_1));
+
+        mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
+        mCardShadowTransformer.enableScaling(true);
+
+        mViewPager.setAdapter(mCardAdapter);
+        mViewPager.setPageTransformer(false, mCardShadowTransformer);
+        mViewPager.setOffscreenPageLimit(3);
+
+        //todo carregar o último feito
+        //mViewPager.setCurrentItem(2);
+
+        /*
+        mViewPager.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                mViewPager.setCurrentItem(2, true);
+            }
+        }, 500);
+        */
+
+        return view;
+    }
+
+
+
+    public void clickBookButton(int position) {
+
+        CardItem card = mCardAdapter.getCardItemAt(position);
+        String title = getResources().getString(card.getTitle());
+
+        Intent intent = new Intent(mActivity, ExerciseActivity.class);
+        intent.putExtra("title", title);
+        startActivity(intent);
     }
 
 }
