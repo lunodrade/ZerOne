@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,9 +27,15 @@ import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
 import com.lunodrade.zerone.models.User;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.R.attr.onClick;
 
 
 /**
@@ -45,6 +52,8 @@ public class ProfileFragment extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+
+    private User mUserClass;
 
     private ValueEventListener mPostListener;
 
@@ -88,9 +97,9 @@ public class ProfileFragment extends Fragment {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         MainActivity activity = (MainActivity) getActivity();
-        User user = activity.getUserClass();
-        if (user != null) {
-            updateInterface(user);
+        mUserClass = activity.getUserClass();
+        if (mUserClass != null) {
+            updateInterface(mUserClass);
         }
 
         loadDatabase();
@@ -113,9 +122,10 @@ public class ProfileFragment extends Fragment {
         mPostListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+                mUserClass = dataSnapshot.getValue(User.class);
 
-                updateInterface(user);
+                Log.d("ProfileFragment", "onDataChange: Carregando dados novos");
+                updateInterface(mUserClass);
             }
 
             @Override
@@ -150,15 +160,28 @@ public class ProfileFragment extends Fragment {
     }
 
     public static int getLvlForXP(int xp) {
-        if (xp <= 255) {
+        if (xp <= 272) {
             return xp  / 17;
-        }else if (xp > 272 && xp < 887) {
+        }else if (xp > 272 && xp < 825) {
             return (int) ((Math.sqrt(24 * xp - 5159) + 59) / 6);
-        }else if (xp > 825) {
+        }else if (xp >= 825) {
             return (int) ((Math.sqrt(56 * xp - 32511) + 303) / 14);
         }
         return 0;
     }
 
+
+
+    @OnClick(R.id.profile_teste_addpts)
+    public void sayHi(Button button) {
+        String uid = mFirebaseUser.getUid();
+        Map<String, Object> childUpdates = new HashMap<>();
+
+        mUserClass.xp += 10;
+
+        childUpdates.put("/users/" + uid, mUserClass);
+
+        mDatabase.updateChildren(childUpdates);
+    }
 
 }

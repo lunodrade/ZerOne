@@ -57,6 +57,9 @@ public class ExerciseActivity extends AppCompatActivity {
         mViewPager.setAdapter(adapter);
     }
 
+
+
+
     /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

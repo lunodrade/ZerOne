@@ -24,7 +24,7 @@
     <string name="title_3">Lógica</string>
     <string name="title_4">Vetores II</string>
 
-    <string name="text_1">Aqui poderia ir uma breve descrição desse módulo.</string>
+    <string name="text_1">Aqui poderia ir uma breve descrição desse módulo. Ocupando em média 100 caracteres e 4 linhas.</string>
     <string name="title_activity_exercise">ExerciseActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 

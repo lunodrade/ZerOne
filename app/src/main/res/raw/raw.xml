@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book>
+    <question id="10">
+        <productname>Jeans</productname>
+        <productcolor>red</productcolor>
+        <productquantity>5</productquantity>
+    </question>
+    <question id="20">
+        <productname>Tshirt</productname>
+        <productcolor>blue</productcolor>
+        <productquantity>3</productquantity>
+    </question>
+    <question id="13">
+        <productname>short"s</productname>
+        <productcolor>teste\n</productcolor>
+        <productquantity>4</productquantity>
+    </question>
+</book>
