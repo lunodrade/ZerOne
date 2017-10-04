@@ -72,16 +72,14 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.0.0'
     compile 'com.afollestad.material-dialogs:core:0.9.4.7'
     compile 'com.github.smart-fun:XmlToJson:1.4.0'
-
+    
     //Tests e Annotations
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
-
 }
 
 apply plugin: 'com.google.gms.google-services'
-
 
 /*
 configurations.all {
@@ -107,6 +105,7 @@ resolutionStrategy.force "com.android.support:preference-v14:${versions.supportL
 resolutionStrategy.force "com.android.support:customtabs:${versions.supportLib}"
 resolutionStrategy.force "com.android.support:support-annotations:${versions.supportLib}"
  */
+
 
 /*
 compile('com.mikepenz:materialdrawer:5.9.5@aar') {
