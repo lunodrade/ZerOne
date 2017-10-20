@@ -48,10 +48,10 @@ public class HomeFragment extends Fragment {
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
 
         mCardAdapter = new CardPagerAdapter(this);
-        mCardAdapter.addCardItem(new CardItem(R.string.title_1, R.string.text_1));
-        mCardAdapter.addCardItem(new CardItem(R.string.title_2, R.string.text_1));
-        mCardAdapter.addCardItem(new CardItem(R.string.title_3, R.string.text_1));
-        mCardAdapter.addCardItem(new CardItem(R.string.title_4, R.string.text_1));
+        mCardAdapter.addCardItem(new CardItem(R.string.book_title_1, R.string.book_desc_1));
+        mCardAdapter.addCardItem(new CardItem(R.string.book_title_2, R.string.book_desc_2));
+        mCardAdapter.addCardItem(new CardItem(R.string.book_title_3, R.string.book_desc_2));
+        mCardAdapter.addCardItem(new CardItem(R.string.book_title_4, R.string.book_desc_3));
 
         mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
         mCardShadowTransformer.enableScaling(true);

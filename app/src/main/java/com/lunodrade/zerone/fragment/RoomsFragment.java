@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -46,7 +47,7 @@ public class RoomsFragment extends Fragment {
     Button mIngressar;
 
     @BindView(R.id.room_block_with_card)
-    CardView mBlockWithRoom;
+    LinearLayout mBlockWithRoom;
 
     @BindView(R.id.room_block_without_card)
     CardView mBlockWithoutRoom;
@@ -89,8 +90,8 @@ public class RoomsFragment extends Fragment {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         mProgressBar = new MaterialDialog.Builder(getActivity())
-                .title("progress_dialog")
-                .content("please_wait")
+                .title("Por favor, esper")
+                .content("Atualizando informações sobre sua turma")
                 .progress(true, 0)
                 .show();
 
@@ -184,17 +185,21 @@ public class RoomsFragment extends Fragment {
         //      fazendo com que a mRoomClass daqui fique defaçada
 
         if (user.activeRoomId != null) {
-            mBlockWithRoom.setVisibility(View.GONE);
-            mBlockWithoutRoom.setVisibility(View.VISIBLE);
-
-            mMenuOptions.clear();
-            mMenuInflater.inflate(R.menu.fragment_rooms_options, mMenuOptions);
-
-        } else {
             mBlockWithoutRoom.setVisibility(View.GONE);
             mBlockWithRoom.setVisibility(View.VISIBLE);
 
-            mMenuOptions.clear();
+            if (mMenuOptions != null) {
+                mMenuOptions.clear();
+                mMenuInflater.inflate(R.menu.fragment_rooms_options, mMenuOptions);
+            }
+
+        } else {
+            mBlockWithRoom.setVisibility(View.GONE);
+            mBlockWithoutRoom.setVisibility(View.VISIBLE);
+
+            if (mMenuOptions != null) {
+                mMenuOptions.clear();
+            }
         }
 
         mProgressBar.dismiss();

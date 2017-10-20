@@ -263,11 +263,13 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
+        /*
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
             showSnackbar(R.string.sign_in_cancelled);
             return true;
         }
+        */
 
         return super.onOptionsItemSelected(item);
     }
@@ -363,11 +365,14 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+
+        /*
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+        */
 
         } else if (id == R.id.nav_share) {
 

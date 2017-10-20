@@ -1,5 +1,6 @@
 package com.lunodrade.zerone;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.StringRes;
 import android.support.design.widget.CoordinatorLayout;
@@ -15,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -74,6 +76,14 @@ public class ExerciseActivity extends AppCompatActivity {
         adapter.addFragment(mQuestionsFragment, "EXERCÍCIOS");
         adapter.addFragment(new StudiesFragment(), "ESTUDOS");
         mViewPager.setAdapter(adapter);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageSelected(int position) {
+                hideSoftKeyboard();
+            }
+        });
     }
 
     public void showInfo(String info) {
@@ -85,7 +95,14 @@ public class ExerciseActivity extends AppCompatActivity {
         toast.show();
     }
 
-
+    public void hideSoftKeyboard() {
+        // Check if no view has focus:
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 
 
 

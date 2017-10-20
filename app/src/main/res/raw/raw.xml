@@ -2,17 +2,17 @@
 <book>
     <question id="1">
         <type>input</type>
-        <query>quanto é 2+2? \n Segunda linha</query>
+        <query>variáveis \n     numérico x \n inicio \n     x:=10 \n     x:= x+2 \n     x:= x /3 \n     x:= 6*x+1 \n     x:= resto(x ,7) \n     x:= x^3 \n     escrever "x = ",x \n fim \n  \n Qual será o valor de x a ser mostrado?</query>
         <answer>5</answer>
     </question>
 
     <question id="2">
         <type>radio</type>
-        <query>quanto é 1+4?</query>
-        <option>2</option>
-        <option>7</option>
-        <option>10</option>
+        <query>Considere inicialmente um vetor de inteiros como [0, 1, 5, 7]. Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n  \n Qual o valor na posição 5 ao final disso?</query>
         <option>5</option>
+        <option>11</option>
+        <option>7</option>
+        <option>6</option>
         <answer>3</answer>
     </question>
 

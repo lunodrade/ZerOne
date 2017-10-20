@@ -5,50 +5,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.lunodrade.zerone.fragment.RoomsFragment">
 
-    <!-- Parte caso o usuário não possua nenhuma turma -->
-    <android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="2dp"
-    android:id="@+id/room_block_without_card"
-    android:visibility="gone"
-    android:layout_margin="16dp">
+    <!-- Parte caso o usuário possua alguma turma -->
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg_door" />
-        <LinearLayout
+        android:id="@+id/room_block_with_card"
+        android:layout_margin="8dp"
+        android:visibility="gone">
+
+        <!-- INFO: Sobre a turma -->
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-            <TextView
+            app:cardCornerRadius="2dp"
+            android:layout_margin="8dp">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Você está em uma turma"
-                android:textColor="#000"
-                android:textSize="18sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Agora faça os exercícios e acumule pontos"
-                android:textColor="#555" />
-        </LinearLayout>
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_door" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="Você está em uma turma"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Agora faça os exercícios e acumule pontos"
+                        android:textColor="#555" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-    <!-- Parte caso o usuário possua alguma turma -->
+        <!-- INFO: Sobre o ranking -->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="2dp"
+            android:layout_margin="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:padding="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="Ranking"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:src="@drawable/placeholder_ranking" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="8dp">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Visualizar"
+                        android:theme="@style/PrimaryFlatButton" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+    <!-- Parte caso o usuário não possua nenhuma turma -->
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="2dp"
-        android:id="@+id/room_block_with_card"
+        android:id="@+id/room_block_without_card"
         android:visibility="gone"
         android:layout_margin="16dp">
         <LinearLayout

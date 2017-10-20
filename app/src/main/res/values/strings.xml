@@ -19,12 +19,16 @@
     <!-- ==================================================================================== -->
     <string name="fragment_rooms_code_error">Não existe nenhuma turma com o código inserido</string>
 
-    <string name="title_1">Arrays I</string>
-    <string name="title_2">Vetores I</string>
-    <string name="title_3">Lógica</string>
-    <string name="title_4">Vetores II</string>
+    <string name="book_title_1">Revisão AP I</string>
+    <string name="book_title_2">Var Indexadas</string>
+    <string name="book_title_3">Lógica</string>
+    <string name="book_title_4">Vetores II</string>
 
-    <string name="text_1">Aqui poderia ir uma breve descrição desse módulo. Ocupando em média 100 caracteres e 4 linhas.</string>
+    <string name="book_desc_1">Rever alguns conceitos estudados em Algoritmos e Programação I.</string>
+    <string name="book_desc_2">Estudo de variáveis armazenadas por indexes (vetor, string e matriz bidimensional).</string>
+    <string name="book_desc_3">Aqui poderia ir uma breve descrição desse módulo. Ocupando em média 100 caracteres e 4 linhas.</string>
+    <string name="book_desc_4">Aqui poderia ir uma breve descrição desse módulo. Ocupando em média 100 caracteres e 4 linhas.</string>
+
     <string name="title_activity_exercise">ExerciseActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -33,8 +34,14 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnEditorAction;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
+import android.view.KeyEvent;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 public class QuestionsFragment extends Fragment {
@@ -169,9 +176,13 @@ public class QuestionsFragment extends Fragment {
             mCurrentIndexQuestions++;
 
             Log.d("ExerciseActivity", "callTestQuestion ID: " + mQuestionID + " → " + mQuestions.get(mQuestionID));
+
+            mActivity.hideSoftKeyboard();
+
             updateView(mQuestions.get(mQuestionID));
         }
     }
+
 
 
 
@@ -229,7 +240,14 @@ public class QuestionsFragment extends Fragment {
 
 
 
-
+    @OnEditorAction(R.id.question_tyinput_answer)
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if(actionId == EditorInfo.IME_ACTION_DONE){
+            testar(new Button(getContext()));
+            return true;
+        }
+        return false;
+    }
 
 
 
