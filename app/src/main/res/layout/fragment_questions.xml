@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:scrollbars="vertical"
     android:fillViewport="true"
+    android:id="@+id/questions_scrollview"
     tools:context="com.lunodrade.zerone.exercise.QuestionsFragment">
 
 
@@ -37,6 +38,8 @@
                 android:text="xx de xx" />
 
         </LinearLayout>
+
+        <!-- ============================================== -->
 
         <!-- TIPO: INPUT -->
         <LinearLayout
@@ -85,6 +88,7 @@
                 android:theme="@style/ButtonStyle"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="32dp"
+                android:enabled="false"
                 android:text="CONFIRMAR" />
 
         </LinearLayout>
@@ -156,6 +160,7 @@
                 android:theme="@style/ButtonStyle"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="32dp"
+                android:enabled="false"
                 android:text="CONFIRMAR" />
 
         </LinearLayout>
@@ -196,6 +201,7 @@
                 android:theme="@style/ButtonStyle"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="32dp"
+                android:enabled="false"
                 android:text="CONFIRMAR" />
 
         </LinearLayout>
@@ -267,9 +273,13 @@
                 android:theme="@style/ButtonStyle"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="32dp"
+                android:enabled="false"
                 android:text="CONFIRMAR" />
 
         </LinearLayout>
+
+        <!-- ============================================== -->
+
 
     </LinearLayout>
 

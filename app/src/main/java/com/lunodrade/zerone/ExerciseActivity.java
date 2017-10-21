@@ -2,6 +2,7 @@ package com.lunodrade.zerone;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.StringRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -9,13 +10,20 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -58,6 +66,7 @@ public class ExerciseActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.exercise_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
     }
+
 
     private void checkExtras(Bundle extras) {
         Log.d("ExerciseActivity", "checkExtras: existe extras? " + (extras != null));
@@ -131,5 +140,66 @@ public class ExerciseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     */
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //                  Scroll maxBottom quando mostrar o teclado
+    //
+    //////////////////////////////////////////////////////////////////////////////////////////////*/
+
+    private ViewTreeObserver.OnGlobalLayoutListener keyboardLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            int heightDiff = rootLayout.getRootView().getHeight() - rootLayout.getHeight();
+            int contentViewTop = getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();
+
+            LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(ExerciseActivity.this);
+
+            if(heightDiff <= contentViewTop){
+                onHideKeyboard();
+
+                Intent intent = new Intent("KeyboardWillHide");
+                broadcastManager.sendBroadcast(intent);
+            } else {
+                int keyboardHeight = heightDiff - contentViewTop;
+                onShowKeyboard(keyboardHeight);
+
+                Intent intent = new Intent("KeyboardWillShow");
+                intent.putExtra("KeyboardHeight", keyboardHeight);
+                broadcastManager.sendBroadcast(intent);
+            }
+        }
+    };
+
+    private boolean keyboardListenersAttached = false;
+    private ViewGroup rootLayout;
+
+    protected void onShowKeyboard(int keyboardHeight) {
+        NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.questions_scrollview);
+        nestedScrollView.fullScroll(View.FOCUS_DOWN);
+    }
+    protected void onHideKeyboard() { }
+
+    public void attachKeyboardListeners() {
+        if (keyboardListenersAttached) {
+            return;
+        }
+
+        rootLayout = (ViewGroup) findViewById(R.id.questions_scrollview);
+        rootLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyboardLayoutListener);
+
+        keyboardListenersAttached = true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (keyboardListenersAttached) {
+            rootLayout.getViewTreeObserver().removeGlobalOnLayoutListener(keyboardLayoutListener);
+        }
+    }
 
 }
