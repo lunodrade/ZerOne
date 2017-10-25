@@ -39,6 +39,23 @@
 
         </LinearLayout>
 
+        <!-- LAYOUT CARREGANDO... -->
+        <LinearLayout
+            android:id="@+id/question_transition_block"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Carregando..."/>
+
+        </LinearLayout>
+
         <!-- ============================================== -->
 
         <!-- TIPO: INPUT -->

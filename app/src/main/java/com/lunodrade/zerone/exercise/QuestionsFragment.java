@@ -1,19 +1,16 @@
 package com.lunodrade.zerone.exercise;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.NestedScrollView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -24,15 +21,14 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.lunodrade.zerone.ExerciseActivity;
+import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -40,15 +36,11 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
-import butterknife.OnFocusChange;
 import butterknife.OnTextChanged;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 
 import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 import android.view.KeyEvent;
-
-import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 public class QuestionsFragment extends Fragment {
@@ -62,7 +54,7 @@ public class QuestionsFragment extends Fragment {
 
     private Map<Integer, LinkedTreeMap> mQuestions;
     private ArrayList<Integer> mArrayIndexQuestions;
-    private int mQuestionID;
+    private int mQuestionID = -1;
     private int mCurrentIndexQuestions;
     private static final int MAXIMUM_INDEX_QUESTIONS = 4;
 
@@ -79,6 +71,9 @@ public class QuestionsFragment extends Fragment {
     TextView mQuestionNumber;
 
     //Blocos de UI
+
+    @BindView(R.id.question_transition_block)
+    View mTransitionBlock;
 
     @BindView(R.id.question_tyinput_block)
     View mTyInputBlock;
@@ -174,7 +169,7 @@ public class QuestionsFragment extends Fragment {
         mCurrentIndexQuestions = 0;
 
         loadQuestions();
-        callQuestions();
+        processQuestions();
     }
 
     private void loadQuestions() {
@@ -193,19 +188,6 @@ public class QuestionsFragment extends Fragment {
         Log.d("ExerciseActivity", "initQuestions: GSON" + mQuestions.size() + " | " + mArrayIndexQuestions.size());
     }
 
-    private void callQuestions() {
-        if (mCurrentIndexQuestions < MAXIMUM_INDEX_QUESTIONS) {
-            mQuestionID = mArrayIndexQuestions.get(mCurrentIndexQuestions);
-            mCurrentIndexQuestions++;
-
-            Log.d("ExerciseActivity", "callTestQuestion ID: " + mQuestionID + " → " + mQuestions.get(mQuestionID));
-
-            mActivity.hideSoftKeyboard();
-
-            updateView(mQuestions.get(mQuestionID));
-        }
-    }
-
     @OnEditorAction(R.id.question_tyinput_answer)
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         String text = v.getText().toString().trim();
@@ -222,6 +204,62 @@ public class QuestionsFragment extends Fragment {
     //
     //////////////////////////////////////////////////////////////////////////////////////////////*/
 
+    private void processQuestions() {
+        Log.d("QuestionsFragment", "processQuestions -- index atual: " + mCurrentIndexQuestions +
+                                                    " -- index máximo: " + MAXIMUM_INDEX_QUESTIONS);
+
+        //Após acertar a última questão
+        if (mCurrentIndexQuestions >= MAXIMUM_INDEX_QUESTIONS) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            return;
+        }
+
+        //Limpar todos possíveis lixos visuais da questão anterior (se existir)
+        if (mQuestionID >= 0) {
+            Log.d("QuestionsFragment", "processQuestions: limpando rastros visuais das questões");
+
+            mTransitionBlock.setVisibility(View.VISIBLE);
+            //Por início, coloca-se todos blocos como escondidos...
+            mTyInputBlock.setVisibility(View.GONE);
+            mTyRadioBlock.setVisibility(View.GONE);
+            mTyChipBlock.setVisibility(View.GONE);
+            mTyCheckBlock.setVisibility(View.GONE);
+
+            mTyInputAnswer.setText("");
+            mTyRadioGroup.clearCheck();
+            for (int i = 0; i < 4; i++) {
+                mTyCheckBoxes.get(i).setChecked(false);
+            }
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Processar qual é a proxima questão, e chamar o update visual dela
+                    callNextQuestion();
+                }
+            }, 450);
+
+        } else {
+            //Processar qual é a proxima questão, e chamar o update visual dela
+            if (mQuestionID < 0) {
+                callNextQuestion();
+            }
+        }
+
+    }
+
+    private void callNextQuestion() {
+        Log.d("QuestionsFragment", "callNextQuestion -- ID: " + mQuestionID + " → " + mQuestions.get(mQuestionID));
+        mQuestionID = mArrayIndexQuestions.get(mCurrentIndexQuestions);
+        mCurrentIndexQuestions++;
+
+        mActivity.hideSoftKeyboard();
+
+        updateView(mQuestions.get(mQuestionID));
+    }
+
     public void updateView(LinkedTreeMap mSingleQuestion) {
 
         String type = mSingleQuestion.get("type").toString();
@@ -230,11 +268,9 @@ public class QuestionsFragment extends Fragment {
         String numberText = mCurrentIndexQuestions + " de " + MAXIMUM_INDEX_QUESTIONS;
         mQuestionNumber.setText(numberText);
 
-        mTyInputBlock.setVisibility(View.GONE);
-        mTyRadioBlock.setVisibility(View.GONE);
-        mTyChipBlock.setVisibility(View.GONE);
-        mTyCheckBlock.setVisibility(View.GONE);
+        mTransitionBlock.setVisibility(View.GONE);
 
+        //Trata de cada tipo individualmente, mostrando aquele bloco em específico
         if (type.equals("input")) {
             mTyInputBlock.setVisibility(View.VISIBLE);
             mTyInputQuery.setText(query);
@@ -243,7 +279,6 @@ public class QuestionsFragment extends Fragment {
             mTyRadioBlock.setVisibility(View.VISIBLE);
             mTyRadioQuery.setText(query);
             ArrayList options = (ArrayList) mSingleQuestion.get("option");
-
             for (int i = 0; i < options.size(); i++) {
                 LinkedTreeMap opt = (LinkedTreeMap) options.get(i);
                 String text = opt.get("content").toString();
@@ -258,6 +293,12 @@ public class QuestionsFragment extends Fragment {
         } else if (type.equals("check")) {
             mTyCheckBlock.setVisibility(View.VISIBLE);
             mTyCheckQuery.setText(query);
+            ArrayList options = (ArrayList) mSingleQuestion.get("option");
+            for (int i = 0; i < options.size(); i++) {
+                LinkedTreeMap opt = (LinkedTreeMap) options.get(i);
+                String text = opt.get("content").toString();
+                mTyCheckBoxes.get(i).setText(text);
+            }
         }
     }
 
@@ -287,7 +328,7 @@ public class QuestionsFragment extends Fragment {
         }
 
         if (result) {
-            callQuestions();
+            processQuestions();
         } else {
             mActivity.showInfo("Errou a resposta");
         }
@@ -317,7 +358,7 @@ public class QuestionsFragment extends Fragment {
         }
 
         if (result) {
-            callQuestions();
+            processQuestions();
         } else {
             mActivity.showInfo("Errou a resposta");
         }
@@ -328,7 +369,7 @@ public class QuestionsFragment extends Fragment {
     @OnClick(R.id.question_tychip_confirm)
     public void onConfirmTypeChip(Button button) {
 
-        callQuestions();
+        processQuestions();
     }
 
     // Perguntas do tipo Checkbox
@@ -358,7 +399,7 @@ public class QuestionsFragment extends Fragment {
         }
 
         if (result) {
-            callQuestions();
+            processQuestions();
         } else {
             mActivity.showInfo("Errou a resposta");
         }
