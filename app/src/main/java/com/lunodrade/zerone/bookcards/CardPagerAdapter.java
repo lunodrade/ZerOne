@@ -26,9 +26,11 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     private float mBaseElevation;
 
     private HomeFragment mFragment;
+    private int mUserLevel;
 
-    public CardPagerAdapter(HomeFragment fragment) {
+    public CardPagerAdapter(HomeFragment fragment, int userLevel) {
         mFragment = fragment;
+        mUserLevel = userLevel;
 
         mData = new ArrayList<>();
         mViews = new ArrayList<>();
@@ -80,6 +82,12 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
                 mFragment.clickBookButton(position);
             }
         });
+
+        if (mData.get(position).getLevel() > mUserLevel) {
+            add1.setText("Lv " + mData.get(position).getLevel() + "+");
+            add1.setEnabled(false);
+        }
+
 
         cardView.setMaxCardElevation(mBaseElevation * MAX_ELEVATION_FACTOR);
         mViews.set(position, cardView);

@@ -274,21 +274,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void showSnackbar(@StringRes int errorMessageRes) {
         View mRootView = this.findViewById(R.id.placeSnackBar);
 
@@ -335,27 +320,6 @@ public class MainActivity extends AppCompatActivity
         return hasNavBar;
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

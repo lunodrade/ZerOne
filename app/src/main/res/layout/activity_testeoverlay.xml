@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content">
+
+<Button
+    android:id="@+id/btnMyDeals"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_gravity="right"
+    android:layout_marginRight="8dp"
+    android:text="DEALS"
+    android:textSize="18sp" />
+
+<TextView
+    android:id="@+id/badge_notification_2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/ic_notification_overlay"
+    android:text="23"
+    android:textColor="#FFF"
+    android:textSize="12sp"
+    android:textStyle="bold"
+    android:translationZ="5dp"/>
+</RelativeLayout>

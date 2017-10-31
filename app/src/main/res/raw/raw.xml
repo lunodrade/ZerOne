@@ -9,7 +9,7 @@
         <option>7</option>
         <option>6</option>
         <answer>3</answer>
-        <comment_answer>3</comment_answer>
+        <comment_answer>Era a questão 3</comment_answer>
     </question>
 
 
@@ -27,7 +27,7 @@
         <option>7</option>
         <option>6</option>
         <answer>3</answer>
-        <comment_answer>3</comment_answer>
+        <comment_answer>Era a questão 3 \n Pulando linha</comment_answer>
     </question>
 
 
@@ -39,7 +39,7 @@
     <option>7</option>
     <option>6</option>
     <answer>3</answer>
-    <comment_answer>3</comment_answer>
+    <comment_answer>Era a questão 3 \n  \n Pulando duas linhas</comment_answer>
 </question>
 
 
@@ -57,6 +57,6 @@
         <option>7</option>
         <option>6</option>
         <answer>3</answer>
-        <comment_answer>3</comment_answer>
+        <comment_answer>Era a questão 3 Sem pulando linha</comment_answer>
     </question>
 </book>

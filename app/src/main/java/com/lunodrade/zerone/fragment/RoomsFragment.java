@@ -252,13 +252,17 @@ public class RoomsFragment extends Fragment {
                         Log.d("RoomsFragment", "onDataChange: RoomMembers = " + mRoomClass.members);
                         Log.d("RoomsFragment", "onDataChange: hasKey? " + mRoomClass.members.containsKey("cYYKQASlC4Nuwlp7X4OeMLHsDCt1"));
 
-                        mUserClass.activeRoomName = mRoomClass.name;
-                        mUserClass.activeRoomId = roomCode;
-
                         String uid = mFirebaseUser.getUid();
-                        mRoomClass.members.put(uid, 279);
+                        
+                        if (mRoomClass.members.containsKey(uid) == false) {
+                            Log.d("RoomsFragment", "onDataChange: INICIALIZANDO USUÁRIO");
+                            mUserClass.activeRoomName = mRoomClass.name;
+                            mUserClass.activeRoomId = roomCode;
 
-                        saveRoomInDatabase(mUserClass.activeRoomId);
+                            mRoomClass.members.put(uid, mUserClass.activeRoomXp);
+
+                            saveRoomInDatabase(mUserClass.activeRoomId);
+                        }
 
                         updateInterface(mUserClass);
                     } else {
@@ -281,6 +285,7 @@ public class RoomsFragment extends Fragment {
 
         mUserClass.activeRoomId = null;
         mUserClass.activeRoomName = null;
+        mUserClass.activeRoomXp = 0;
 
         String uid = mFirebaseUser.getUid();
         mRoomClass.members.put(uid, null);

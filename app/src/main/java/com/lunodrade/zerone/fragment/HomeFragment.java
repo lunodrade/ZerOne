@@ -7,6 +7,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +48,11 @@ public class HomeFragment extends Fragment {
 
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
 
-        mCardAdapter = new CardPagerAdapter(this);
-        mCardAdapter.addCardItem(new CardItem(R.string.book_title_1, R.string.book_desc_1));
-        mCardAdapter.addCardItem(new CardItem(R.string.book_title_2, R.string.book_desc_2));
-        mCardAdapter.addCardItem(new CardItem(R.string.book_title_3, R.string.book_desc_2));
-        mCardAdapter.addCardItem(new CardItem(R.string.book_title_4, R.string.book_desc_3));
+        mCardAdapter = new CardPagerAdapter(this, mActivity.getUserClass().getLvlForXP());
+        mCardAdapter.addCardItem(new CardItem(0, 16, R.string.book_title_1, R.string.book_desc_1));
+        mCardAdapter.addCardItem(new CardItem(5, 50, R.string.book_title_2, R.string.book_desc_2));
+        mCardAdapter.addCardItem(new CardItem(15, 150, R.string.book_title_3, R.string.book_desc_2));
+        mCardAdapter.addCardItem(new CardItem(20, 250, R.string.book_title_4, R.string.book_desc_3));
 
         mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
         mCardShadowTransformer.enableScaling(true);
@@ -60,7 +61,7 @@ public class HomeFragment extends Fragment {
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
         mViewPager.setOffscreenPageLimit(3);
 
-        //todo carregar o último feito
+        //TODO: carregar o último feito
         //mViewPager.setCurrentItem(2);
 
         /*
@@ -82,11 +83,18 @@ public class HomeFragment extends Fragment {
     public void clickBookButton(int position) {
 
         CardItem card = mCardAdapter.getCardItemAt(position);
+        int level = card.getLevel();
+        int points = card.getPoints();
         String title = getResources().getString(card.getTitle());
 
+        Log.d("HomeFragment", "clickBookButton: " + level + " | " + points);
+
         Intent intent = new Intent(mActivity, ExerciseActivity.class);
+        intent.putExtra("level", level);
+        intent.putExtra("points", points);
         intent.putExtra("title", title);
         startActivity(intent);
+        mActivity.finish();
     }
 
 }

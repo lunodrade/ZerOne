@@ -1,6 +1,7 @@
 package com.lunodrade.zerone.exercise;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import com.lunodrade.zerone.ExerciseActivity;
 import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
+import com.lunodrade.zerone.ResultsActivity;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -70,7 +72,16 @@ public class QuestionsFragment extends Fragment {
     @BindView(R.id.questions_number)
     TextView mQuestionNumber;
 
+    @BindView(R.id.questions_answercomment_text)
+    TextView mAnswerCommentText;
+
     //Blocos de UI
+
+    @BindView(R.id.questions_answercomment_block)
+    View mAnswerCommentBlock;
+
+    @BindView(R.id.questions_answercomment_background)
+    View mAnswerCommentBackground;
 
     @BindView(R.id.question_transition_block)
     View mTransitionBlock;
@@ -204,14 +215,41 @@ public class QuestionsFragment extends Fragment {
     //
     //////////////////////////////////////////////////////////////////////////////////////////////*/
 
+    private void showAnswerComment(boolean hitAnswer) {
+        mAnswerCommentBlock.setVisibility(View.VISIBLE);
+        String comment = "Parabéns, você acertou!";
+
+        if (hitAnswer) {
+            mActivity.mCorrectQuestions++;
+            mAnswerCommentBackground.setBackgroundColor(Color.argb(242, 174, 213, 129));
+        } else {
+            mActivity.mWrongQuestions++;
+            mAnswerCommentBackground.setBackgroundColor(Color.argb(242, 229, 115, 115));
+            LinkedTreeMap question = mQuestions.get(mQuestionID);
+            comment = question.get("comment_answer").toString().replace(" \\n ", "\n");
+        }
+
+        mAnswerCommentText.setText(comment);
+    }
+
+    @OnClick(R.id.question_answercomment_button)
+    public void commentClickNext() {
+        processQuestions();
+    }
+
     private void processQuestions() {
         Log.d("QuestionsFragment", "processQuestions -- index atual: " + mCurrentIndexQuestions +
                                                     " -- index máximo: " + MAXIMUM_INDEX_QUESTIONS);
 
         //Após acertar a última questão
         if (mCurrentIndexQuestions >= MAXIMUM_INDEX_QUESTIONS) {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
+            callResultsActivity("sucess");
+            return;
+        }
+
+        //Após errar 3 questões
+        if (mActivity.mWrongQuestions >= 3) {
+            callResultsActivity("fail");
             return;
         }
 
@@ -219,7 +257,9 @@ public class QuestionsFragment extends Fragment {
         if (mQuestionID >= 0) {
             Log.d("QuestionsFragment", "processQuestions: limpando rastros visuais das questões");
 
+            mAnswerCommentBlock.setVisibility(View.GONE);
             mTransitionBlock.setVisibility(View.VISIBLE);
+
             //Por início, coloca-se todos blocos como escondidos...
             mTyInputBlock.setVisibility(View.GONE);
             mTyRadioBlock.setVisibility(View.GONE);
@@ -231,6 +271,11 @@ public class QuestionsFragment extends Fragment {
             for (int i = 0; i < 4; i++) {
                 mTyCheckBoxes.get(i).setChecked(false);
             }
+
+            mInputConfirmButton.setEnabled(false);
+            mCheckConfirmButton.setEnabled(false);
+            mRadioConfirmButton.setEnabled(false);
+            mChipConfirmButton.setEnabled(false);
 
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -247,7 +292,23 @@ public class QuestionsFragment extends Fragment {
                 callNextQuestion();
             }
         }
+    }
 
+    private void callResultsActivity(String result) {
+        Intent intent = new Intent(getActivity(), ResultsActivity.class);
+
+        Log.d("QuestionsFragment", "TexteExtras: " + mActivity.mBookLevel + " | " + mActivity.mBookPoints + " | " + mActivity.mBookTitle);
+
+        intent.putExtra("result", result);
+        intent.putExtra("booktitle", mActivity.mBookTitle);
+        intent.putExtra("booklevel", mActivity.mBookLevel);
+        intent.putExtra("bookpoints", mActivity.mBookPoints);
+        intent.putExtra("correct", ""+mActivity.mCorrectQuestions);
+        intent.putExtra("wrong", ""+mActivity.mWrongQuestions);
+
+        startActivity(intent);
+        mActivity.finish();
+        return;
     }
 
     private void callNextQuestion() {
@@ -327,11 +388,7 @@ public class QuestionsFragment extends Fragment {
             }
         }
 
-        if (result) {
-            processQuestions();
-        } else {
-            mActivity.showInfo("Errou a resposta");
-        }
+        showAnswerComment(result);
     }
 
     // Perguntas do tipo Radiobutton
@@ -357,11 +414,7 @@ public class QuestionsFragment extends Fragment {
             }
         }
 
-        if (result) {
-            processQuestions();
-        } else {
-            mActivity.showInfo("Errou a resposta");
-        }
+        showAnswerComment(result);
     }
 
     // Perguntas do tipo Chips //TODO fazer o confirmar do tipo chips
@@ -369,7 +422,7 @@ public class QuestionsFragment extends Fragment {
     @OnClick(R.id.question_tychip_confirm)
     public void onConfirmTypeChip(Button button) {
 
-        processQuestions();
+        showAnswerComment(true);
     }
 
     // Perguntas do tipo Checkbox
@@ -398,19 +451,13 @@ public class QuestionsFragment extends Fragment {
             }
         }
 
-        if (result) {
-            processQuestions();
-        } else {
-            mActivity.showInfo("Errou a resposta");
-        }
+        showAnswerComment(result);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                  Habilitar/Desabilitar botão de confirmar        TODO: falta do chip
-
-
-    //TODO: reinicar a UI de cada tipo de questão ao passar por ela (acho que o butter tem essa função)
+    //      TODO: reinicar a UI de cada tipo de questão ao passar por ela (acho que o butter tem essa função)
     //
     //////////////////////////////////////////////////////////////////////////////////////////////*/
 

@@ -10,294 +10,343 @@
     tools:context="com.lunodrade.zerone.exercise.QuestionsFragment">
 
 
-    <LinearLayout
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- X DE TANTOS -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Questão " />
-
-            <TextView
-                android:id="@+id/questions_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="xx de xx" />
-
-        </LinearLayout>
-
-        <!-- LAYOUT CARREGANDO... -->
-        <LinearLayout
-            android:id="@+id/question_transition_block"
+            android:id="@+id/questions_answercomment_block"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Carregando..."/>
-
-        </LinearLayout>
-
-        <!-- ============================================== -->
-
-        <!-- TIPO: INPUT -->
-        <LinearLayout
-            android:id="@+id/question_tyinput_block"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pergunta"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/question_tyinput_query"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Resposta"
-                android:textSize="10sp" />
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/question_tyinput_answer"
-                android:layout_width="80dp"
-                android:inputType="text"
-                android:maxLines="1"
-                android:imeOptions="actionDone"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/question_tyinput_confirm"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:theme="@style/ButtonStyle"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="32dp"
-                android:enabled="false"
-                android:text="CONFIRMAR" />
-
-        </LinearLayout>
-
-        <!-- TIPO: RADIO -->
-        <LinearLayout
-            android:id="@+id/question_tyradio_block"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pergunta"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/question_tyradio_query"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Alternativas"
-                android:textSize="10sp" />
-
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/question_tyradio_radiogroup"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/question_tyradio_optionA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="A" />
-
-                <RadioButton
-                    android:id="@+id/question_tyradio_optionB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="B" />
-
-                <RadioButton
-                    android:id="@+id/question_tyradio_optionC"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="C" />
-
-                <RadioButton
-                    android:id="@+id/question_tyradio_optionD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="D" />
-            </RadioGroup>
-
-            <Button
-                android:id="@+id/question_tyradio_confirm"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:theme="@style/ButtonStyle"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="32dp"
-                android:enabled="false"
-                android:text="CONFIRMAR" />
-
-        </LinearLayout>
-
-        <!-- TIPO: CHIP -->
-        <LinearLayout
-            android:id="@+id/question_tychip_block"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cenário"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/question_tychip_query"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Pedaços"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/question_tychip_confirm"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:theme="@style/ButtonStyle"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="32dp"
-                android:enabled="false"
-                android:text="CONFIRMAR" />
-
-        </LinearLayout>
-
-        <!-- TIPO: CHECK -->
-        <LinearLayout
-            android:id="@+id/question_tycheck_block"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pergunta"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/question_tycheck_query"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Alternativas"
-                android:textSize="10sp" />
+            android:translationZ="5dp"
+            android:visibility="gone"
+            android:clickable="true">
 
             <LinearLayout
+                android:id="@+id/questions_answercomment_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="40dp"
+                android:layout_gravity="bottom"
+                android:translationZ="5dp"
                 android:orientation="vertical">
 
-                <CheckBox
-                    android:id="@+id/questions_tycheck_boxA"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/questions_answercomment_text"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:padding="30dp"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AAAAAAAA" />
+                    android:text="TEWTEWTEWTWETWETEWTEWTEW"/>
 
-                <CheckBox
-                    android:id="@+id/questions_tycheck_boxB"
-                    android:layout_width="match_parent"
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/question_answercomment_button"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:text="BBBBBBB" />
-
-                <CheckBox
-                    android:id="@+id/questions_tycheck_boxC"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CCCCCC" />
-
-                <CheckBox
-                    android:id="@+id/questions_tycheck_boxD"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="DDDDDDDD" />
+                    android:layout_gravity="right"
+                    android:layout_margin="10dp"
+                    android:text="Próxima"
+                    android:textColor="@color/colorAccent"
+                    app:backgroundTint="@android:color/white"/>
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/question_tycheck_confirm"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:theme="@style/ButtonStyle"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="32dp"
-                android:enabled="false"
-                android:text="CONFIRMAR" />
 
         </LinearLayout>
 
-        <!-- ============================================== -->
+
+        <LinearLayout
+            android:id="@+id/teetete"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- X DE TANTOS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Questão " />
+
+                <TextView
+                    android:id="@+id/questions_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="xx de xx" />
+
+            </LinearLayout>
+
+            <!-- LAYOUT CARREGANDO... -->
+            <LinearLayout
+                android:id="@+id/question_transition_block"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Carregando..."/>
+
+            </LinearLayout>
+            <!-- ============================================== -->
+            <!-- TIPO: INPUT -->
+            <LinearLayout
+                android:id="@+id/question_tyinput_block"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pergunta"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/question_tyinput_query"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Resposta"
+                    android:textSize="10sp" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/question_tyinput_answer"
+                    android:layout_width="80dp"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/question_tyinput_confirm"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:theme="@style/ButtonStyle"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="32dp"
+                    android:enabled="false"
+                    android:text="CONFIRMAR" />
+
+            </LinearLayout>
+
+            <!-- TIPO: RADIO -->
+            <LinearLayout
+                android:id="@+id/question_tyradio_block"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pergunta"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/question_tyradio_query"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Alternativas"
+                    android:textSize="10sp" />
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/question_tyradio_radiogroup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/question_tyradio_optionA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A" />
+
+                    <RadioButton
+                        android:id="@+id/question_tyradio_optionB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="B" />
+
+                    <RadioButton
+                        android:id="@+id/question_tyradio_optionC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C" />
+
+                    <RadioButton
+                        android:id="@+id/question_tyradio_optionD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="D" />
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/question_tyradio_confirm"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:theme="@style/ButtonStyle"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="32dp"
+                    android:enabled="false"
+                    android:text="CONFIRMAR" />
+
+            </LinearLayout>
+
+            <!-- TIPO: CHIP -->
+            <LinearLayout
+                android:id="@+id/question_tychip_block"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cenário"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/question_tychip_query"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Pedaços"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/question_tychip_confirm"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:theme="@style/ButtonStyle"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="32dp"
+                    android:enabled="false"
+                    android:text="CONFIRMAR" />
+
+            </LinearLayout>
+
+            <!-- TIPO: CHECK -->
+            <LinearLayout
+                android:id="@+id/question_tycheck_block"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pergunta"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/question_tycheck_query"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Alternativas"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/questions_tycheck_boxA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="AAAAAAAA" />
+
+                    <CheckBox
+                        android:id="@+id/questions_tycheck_boxB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="BBBBBBB" />
+
+                    <CheckBox
+                        android:id="@+id/questions_tycheck_boxC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CCCCCC" />
+
+                    <CheckBox
+                        android:id="@+id/questions_tycheck_boxD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DDDDDDDD" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/question_tycheck_confirm"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:theme="@style/ButtonStyle"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="32dp"
+                    android:enabled="false"
+                    android:text="CONFIRMAR" />
+
+            </LinearLayout>
+            <!-- ============================================== -->
+        </LinearLayout>
 
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>

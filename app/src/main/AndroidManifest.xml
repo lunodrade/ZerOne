@@ -35,6 +35,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.lunodrade.zerone.MainActivity" />
         </activity>
+        <activity android:name=".ResultsActivity"></activity>
     </application>
 
 </manifest>

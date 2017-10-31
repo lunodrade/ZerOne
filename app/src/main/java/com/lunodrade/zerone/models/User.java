@@ -20,6 +20,7 @@ public class User implements Serializable {
     public int xp = 0;
     public String activeRoomName;
     public String activeRoomId;
+    public int activeRoomXp = 0;
     public Map<String, String> roomsCreatedByMe = new HashMap<>();
 
     public User() {
@@ -59,9 +60,22 @@ public class User implements Serializable {
         result.put("xp", xp);
         result.put("activeRoomName", activeRoomName);
         result.put("activeRoomId", activeRoomId);
+        result.put("activeRoomXp", activeRoomXp);
         result.put("roomsCreatedByMe", roomsCreatedByMe);
 
         return result;
+    }
+
+    @Exclude
+    public int getLvlForXP() {
+        if (xp <= 272) {
+            return xp  / 17;
+        }else if (xp > 272 && xp < 825) {
+            return (int) ((Math.sqrt(24 * xp - 5159) + 59) / 6);
+        }else if (xp >= 825) {
+            return (int) ((Math.sqrt(56 * xp - 32511) + 303) / 14);
+        }
+        return 0;
     }
 
 }

@@ -150,7 +150,8 @@ public class ProfileFragment extends Fragment {
         mNameView.setText(user.name);
 
         mScoreView.setText( ""+user.xp );
-        mLevelView.setText( ""+ getLvlForXP(user.xp) );
+        //mLevelView.setText( ""+ getLvlForXP(user.xp) );
+        mLevelView.setText( ""+ user.getLvlForXP() );
 
         if(user.activeRoomId != null) {
             mRoomView.setText("Você está na sala com nome: " + user.activeRoomName);
@@ -159,6 +160,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    /*
     public static int getLvlForXP(int xp) {
         if (xp <= 272) {
             return xp  / 17;
@@ -169,6 +171,7 @@ public class ProfileFragment extends Fragment {
         }
         return 0;
     }
+    */
 
 
 
