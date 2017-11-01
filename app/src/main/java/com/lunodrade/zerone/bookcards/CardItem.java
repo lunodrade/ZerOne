@@ -7,13 +7,17 @@ public class CardItem {
     private int mPointsResource;
     private int mTextResource;
     private int mTitleResource;
+    private String mCodeResource;
 
-    public CardItem(int level, int points, int title, int text) {
+    public CardItem(String code, int level, int points, int title, int text) {
+        mCodeResource = code;
         mLevelResource = level;
         mPointsResource = points;
         mTitleResource = title;
         mTextResource = text;
     }
+
+    public String getCode() { return mCodeResource; }
 
     public int getLevel() {
         return mLevelResource;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book>
+
+    <question id="1">
+        <type>input</type>
+        <query>variáveis \n     numérico x \n inicio \n     x:=10 \n     x:= x+2 \n     x:= x /3 \n     x:= 6*x+1 \n     x:= resto(x ,7) \n     x:= x^3 \n     escrever "x = ",x \n fim \n  \n Qual será o valor de x a ser mostrado?</query>
+        <answer>5</answer>
+        <comment_answer>5, nao 4</comment_answer>
+    </question>
+
+    <question id="2">
+        <type>input</type>
+        <query>variáveis \n     numérico x \n inicio \n     x:=10 \n     x:= x+2 \n     x:= x /3 \n     x:= 6*x+1 \n     x:= resto(x ,7) \n     x:= x^3 \n     escrever "x = ",x \n fim \n  \n Qual será o valor de x a ser mostrado?</query>
+        <answer>5</answer>
+        <comment_answer>5 \n ola</comment_answer>
+    </question>
+
+    <question id="3">
+        <type>input</type>
+        <query>variáveis \n     numérico x \n inicio \n     x:=10 \n     x:= x+2 \n     x:= x /3 \n     x:= 6*x+1 \n     x:= resto(x ,7) \n     x:= x^3 \n     escrever "x = ",x \n fim \n  \n Qual será o valor de x a ser mostrado?</query>
+        <answer>5</answer>
+        <comment_answer>5 que tal</comment_answer>
+    </question>
+
+    <question id="4">
+        <type>input</type>
+        <query>variáveis \n     numérico x \n inicio \n     x:=10 \n     x:= x+2 \n     x:= x /3 \n     x:= 6*x+1 \n     x:= resto(x ,7) \n     x:= x^3 \n     escrever "x = ",x \n fim \n  \n Qual será o valor de x a ser mostrado?</query>
+        <answer>5</answer>
+        <comment_answer>5</comment_answer>
+    </question>
+</book>

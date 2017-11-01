@@ -174,6 +174,7 @@ public class ResultsActivity extends Activity {
     @OnClick ({R.id.results_fail_continue, R.id.results_sucess_continue})
     public void continueButton(Button button) {
         Intent intent = new Intent(ResultsActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         if (mUserClass != null)
             intent.putExtra("user", mUserClass);

@@ -15,9 +15,9 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingBottom="30dp"
-        android:paddingEnd="60dp"
-        android:paddingLeft="60dp"
-        android:paddingRight="60dp"
-        android:paddingStart="60dp" />
+        android:paddingEnd="45dp"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:paddingStart="45dp" />
 
 </android.support.design.widget.CoordinatorLayout >

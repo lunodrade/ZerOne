@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.lunodrade.zerone.ExerciseActivity;
-import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
 import com.lunodrade.zerone.ResultsActivity;
 
@@ -184,7 +183,10 @@ public class QuestionsFragment extends Fragment {
     }
 
     private void loadQuestions() {
-        InputStream stream = getResources().openRawResource(R.raw.raw);  //TODO: aqui seleciona o book
+        String mDrawableName = mActivity.mBookCode;
+        int resID = getResources().getIdentifier(mDrawableName, "raw", getContext().getPackageName());
+        InputStream stream = getResources().openRawResource(resID);
+
         XmlToJson xmlToJson = new XmlToJson.Builder(stream, null)
                 .forceList("/book/question/option")
                 .forceList("/book/question/chip")
@@ -241,15 +243,16 @@ public class QuestionsFragment extends Fragment {
         Log.d("QuestionsFragment", "processQuestions -- index atual: " + mCurrentIndexQuestions +
                                                     " -- index máximo: " + MAXIMUM_INDEX_QUESTIONS);
 
-        //Após acertar a última questão
-        if (mCurrentIndexQuestions >= MAXIMUM_INDEX_QUESTIONS) {
-            callResultsActivity("sucess");
-            return;
-        }
 
         //Após errar 3 questões
         if (mActivity.mWrongQuestions >= 3) {
             callResultsActivity("fail");
+            return;
+        }
+
+        //Após acertar a última questão
+        if (mCurrentIndexQuestions >= MAXIMUM_INDEX_QUESTIONS) {
+            callResultsActivity("sucess");
             return;
         }
 
@@ -326,8 +329,9 @@ public class QuestionsFragment extends Fragment {
         String type = mSingleQuestion.get("type").toString();
         String query = mSingleQuestion.get("query").toString().replace(" \\n ", "\n");
 
-        String numberText = mCurrentIndexQuestions + " de " + MAXIMUM_INDEX_QUESTIONS;
-        mQuestionNumber.setText(numberText);
+        String numberText = mCurrentIndexQuestions + "/" + MAXIMUM_INDEX_QUESTIONS;
+        //mQuestionNumber.setText(numberText);
+        mActivity.updateQuestionNumber(numberText);
 
         mTransitionBlock.setVisibility(View.GONE);
 

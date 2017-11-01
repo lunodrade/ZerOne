@@ -28,6 +28,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -51,6 +52,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private QuestionsFragment mQuestionsFragment;
     private Map<Integer, LinkedTreeMap> mQuestions;
 
+    public String mBookCode = "";
     public String mBookTitle = "";
     public int mBookLevel = 0;
     public int mBookPoints = 0;
@@ -82,6 +84,7 @@ public class ExerciseActivity extends AppCompatActivity {
         if (extras != null) {
             Log.d("ExerciseActivity", "checkExtras: chamando leitura de extras = " + extras.getString("title"));
 
+            mBookCode = extras.getString("code");
             mBookLevel = extras.getInt("level");
             mBookPoints = extras.getInt("points");
             mBookTitle = extras.getString("title");
@@ -254,4 +257,12 @@ public class ExerciseActivity extends AppCompatActivity {
         }
     }
 
+    public void updateQuestionNumber(String numberText) {
+        TextView questionNumber = (TextView) findViewById(R.id.exercise_question_number);
+        TextView questionLife = (TextView) findViewById(R.id.exercise_question_life);
+        int lifeLeft = 3 - mWrongQuestions;
+
+        questionNumber.setText(""+numberText);
+        questionLife.setText(""+lifeLeft+"♥");
+    }
 }

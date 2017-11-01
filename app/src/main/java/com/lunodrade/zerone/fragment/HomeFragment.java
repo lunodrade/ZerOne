@@ -49,10 +49,10 @@ public class HomeFragment extends Fragment {
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
 
         mCardAdapter = new CardPagerAdapter(this, mActivity.getUserClass().getLvlForXP());
-        mCardAdapter.addCardItem(new CardItem(0, 16, R.string.book_title_1, R.string.book_desc_1));
-        mCardAdapter.addCardItem(new CardItem(5, 50, R.string.book_title_2, R.string.book_desc_2));
-        mCardAdapter.addCardItem(new CardItem(15, 150, R.string.book_title_3, R.string.book_desc_2));
-        mCardAdapter.addCardItem(new CardItem(20, 250, R.string.book_title_4, R.string.book_desc_3));
+        mCardAdapter.addCardItem(new CardItem("livro1", 0, 16, R.string.book_title_1, R.string.book_desc_1));
+        mCardAdapter.addCardItem(new CardItem("livro2", 5, 50, R.string.book_title_2, R.string.book_desc_2));
+        mCardAdapter.addCardItem(new CardItem("livro3", 15, 150, R.string.book_title_3, R.string.book_desc_2));
+        mCardAdapter.addCardItem(new CardItem("livro4", 20, 250, R.string.book_title_4, R.string.book_desc_3));
 
         mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
         mCardShadowTransformer.enableScaling(true);
@@ -83,6 +83,7 @@ public class HomeFragment extends Fragment {
     public void clickBookButton(int position) {
 
         CardItem card = mCardAdapter.getCardItemAt(position);
+        String code = card.getCode();
         int level = card.getLevel();
         int points = card.getPoints();
         String title = getResources().getString(card.getTitle());
@@ -90,11 +91,11 @@ public class HomeFragment extends Fragment {
         Log.d("HomeFragment", "clickBookButton: " + level + " | " + points);
 
         Intent intent = new Intent(mActivity, ExerciseActivity.class);
+        intent.putExtra("code", code);
         intent.putExtra("level", level);
         intent.putExtra("points", points);
         intent.putExtra("title", title);
         startActivity(intent);
-        mActivity.finish();
     }
 
 }

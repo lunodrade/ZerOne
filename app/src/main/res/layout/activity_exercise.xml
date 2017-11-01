@@ -23,6 +23,24 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
+            <TextView
+                android:id="@+id/exercise_question_life"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_gravity="right"
+                android:text="3♥"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <TextView
+                android:id="@+id/exercise_question_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:layout_gravity="right"
+                android:text="10/15"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
