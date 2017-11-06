@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <book>
-
     <question id="1">
         <type>radio</type>
         <query>Considere inicialmente um vetor de inteiros como [0, 1, 5, 7]. Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n  \n Qual o valor na posição 5 ao final disso?</query>
@@ -9,16 +8,18 @@
         <option>7</option>
         <option>6</option>
         <answer>3</answer>
-        <comment_answer>Era a questão 3</comment_answer>
+        <comment_answer>Era a alternativa 4</comment_answer>
     </question>
-
-
-
-
-
-
-
-
+    <question id="2">
+        <type>radio</type>
+        <query>Considere inicialmente um vetor de inteiros como [0, 1, 5, 7]. Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n  \n Qual o valor na posição 5 ao final disso?</query>
+        <option>5</option>
+        <option>11</option>
+        <option>7</option>
+        <option>6</option>
+        <answer>3</answer>
+        <comment_answer>Era a alternativa 4</comment_answer>
+    </question>
     <question id="3">
         <type>radio</type>
         <query>Considere inicialmente um vetor de inteiros como [0, 1, 5, 7]. Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n  \n Qual o valor na posição 5 ao final disso?</query>
@@ -27,28 +28,8 @@
         <option>7</option>
         <option>6</option>
         <answer>3</answer>
-        <comment_answer>Era a questão 3 \n Pulando linha</comment_answer>
+        <comment_answer>Era a alternativa 4</comment_answer>
     </question>
-
-
-    <question id="2">
-    <type>radio</type>
-    <query>Considere inicialmente um vetor de inteiros como [0, 1, 5, 7]. Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n  \n Qual o valor na posição 5 ao final disso?</query>
-    <option>5</option>
-    <option>11</option>
-    <option>7</option>
-    <option>6</option>
-    <answer>3</answer>
-    <comment_answer>Era a questão 3 \n  \n Pulando duas linhas</comment_answer>
-</question>
-
-
-
-
-
-
-
-
     <question id="4">
         <type>radio</type>
         <query>Considere inicialmente um vetor de inteiros como [0, 1, 5, 7]. Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n  \n Qual o valor na posição 5 ao final disso?</query>
@@ -57,6 +38,6 @@
         <option>7</option>
         <option>6</option>
         <answer>3</answer>
-        <comment_answer>Era a questão 3 Sem pulando linha</comment_answer>
+        <comment_answer>Era a alternativa 4</comment_answer>
     </question>
 </book>

@@ -188,8 +188,8 @@ public class QuestionsFragment extends Fragment {
         InputStream stream = getResources().openRawResource(resID);
 
         XmlToJson xmlToJson = new XmlToJson.Builder(stream, null)
-                .forceList("/book/question/option")
                 .forceList("/book/question/chip")
+                .forceList("/book/question/option")
                 .forceList("/book/question/answer")
                 .build();
         Gson gson = new Gson();
@@ -343,12 +343,14 @@ public class QuestionsFragment extends Fragment {
         } else if (type.equals("radio")) {
             mTyRadioBlock.setVisibility(View.VISIBLE);
             mTyRadioQuery.setText(query);
+
             ArrayList options = (ArrayList) mSingleQuestion.get("option");
             for (int i = 0; i < options.size(); i++) {
                 LinkedTreeMap opt = (LinkedTreeMap) options.get(i);
                 String text = opt.get("content").toString();
                 mTyRadioButton.get(i).setText(text);
             }
+
 
         } else if (type.equals("chip")) {
             mTyChipBlock.setVisibility(View.VISIBLE);

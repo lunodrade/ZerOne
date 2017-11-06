@@ -1,6 +1,7 @@
 package com.lunodrade.zerone.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
+import com.lunodrade.zerone.RankingViewer;
 import com.lunodrade.zerone.models.Room;
 import com.lunodrade.zerone.models.User;
 
@@ -207,7 +209,6 @@ public class RoomsFragment extends Fragment {
 
     @OnClick(R.id.roomcardbutton)
     public void sayHi(Button button) {
-
         new MaterialDialog.Builder(this.getContext())
                 .title("Código da turma")
                 .content("Insira o código da turma da qual deseja participar")
@@ -232,6 +233,12 @@ public class RoomsFragment extends Fragment {
                     }
                 })
                 .show();
+    }
+
+    @OnClick(R.id.rooms_ranking_visualize)
+    public void openRankingView(Button button) {
+        Intent intent = new Intent(mActivity, RankingViewer.class);
+        startActivity(intent);
     }
 
     private void loadRoom(final String roomCode) {
