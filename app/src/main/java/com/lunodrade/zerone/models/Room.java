@@ -16,7 +16,7 @@ public class Room {
 
     public String name;
     public String password;
-    public Map<String, Integer> members = new HashMap<>();           // { "cYgijhehgeaUGghe": 12.250 }    uid: ptsnogrupo
+    public Map<String, Integer> members = new HashMap<>();
 
     public Room() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)

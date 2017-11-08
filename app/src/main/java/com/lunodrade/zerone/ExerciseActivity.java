@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.StringRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -22,12 +25,14 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +46,9 @@ import com.lunodrade.zerone.exercise.ViewPagerAdapter;
 import java.io.InputStream;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnTouch;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 
 public class ExerciseActivity extends AppCompatActivity {
@@ -51,6 +59,9 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private QuestionsFragment mQuestionsFragment;
     private Map<Integer, LinkedTreeMap> mQuestions;
+
+    private int mPomodoroSecondsIdle = 5 * 1000;       // 5 * 1000 = 5 seconds
+    public Chronometer mPomodoroChronometer;
 
     public String mBookCode = "";
     public String mBookTitle = "";
@@ -76,8 +87,11 @@ public class ExerciseActivity extends AppCompatActivity {
 
         mTabLayout = (TabLayout) findViewById(R.id.exercise_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
-    }
 
+        mPomodoroChronometer = (Chronometer) findViewById(R.id.exercise_question_pomodoro);
+        mPomodoroChronometer.setBase(SystemClock.elapsedRealtime());
+        mPomodoroChronometer.start();
+    }
 
     private void checkExtras(Bundle extras) {
         Log.d("ExerciseActivity", "checkExtras: existe extras? " + (extras != null));
@@ -111,9 +125,6 @@ public class ExerciseActivity extends AppCompatActivity {
         });
     }
 
-
-
-
     public void showInfo(String info) {
         Context contexto = getApplicationContext();
         String texto = info;
@@ -131,10 +142,6 @@ public class ExerciseActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
-
-
-
 
 
     /*
@@ -159,8 +166,6 @@ public class ExerciseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     */
-
-
 
 
     @Override
@@ -196,7 +201,6 @@ public class ExerciseActivity extends AppCompatActivity {
         alert.show();
         //super.onBackPressed();
     }
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -257,6 +261,12 @@ public class ExerciseActivity extends AppCompatActivity {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //
+    //
+    //////////////////////////////////////////////////////////////////////////////////////////////*/
+
     public void updateQuestionNumber(String numberText) {
         TextView questionNumber = (TextView) findViewById(R.id.exercise_question_number);
         TextView questionLife = (TextView) findViewById(R.id.exercise_question_life);
@@ -264,5 +274,32 @@ public class ExerciseActivity extends AppCompatActivity {
 
         questionNumber.setText(""+numberText);
         questionLife.setText(""+lifeLeft+"♥");
+    }
+
+
+
+
+    @Override
+    public void onUserInteraction() {
+        //Log.d("Pomodoro", "userTouched");
+        countDownTimer.cancel();
+        countDownTimer.start();
+
+        super.onUserInteraction();
+    }
+
+    CountDownTimer countDownTimer = new CountDownTimer(mPomodoroSecondsIdle, 1000) {
+        public void onTick(long millisUntilFinished) { }
+
+        public void onFinish() {
+            mPomodoroChronometer.stop();
+            //mensagem que pomodoro parou
+        }
+    }.start();
+
+    @Override
+    protected void onPause() {
+        mPomodoroChronometer.stop();
+        super.onPause();
     }
 }

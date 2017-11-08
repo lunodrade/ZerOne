@@ -16,9 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +40,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -53,6 +56,15 @@ public class RoomsFragment extends Fragment {
 
     @BindView(R.id.room_block_without_card)
     CardView mBlockWithoutRoom;
+
+    @BindView(R.id.rooms_ranking_name)
+    TextView mRankingName;
+
+    @BindView(R.id.rooms_ranking_points)
+    TextView mRankingPoints;
+
+    @BindView(R.id.rooms_ranking_photo)
+    CircleImageView mRankingPhoto;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
@@ -184,7 +196,7 @@ public class RoomsFragment extends Fragment {
 
         //TODO: adicionar uma checagem se o usuário não entrou por outra turma em outro device
 
-        //      fazendo com que a mRoomClass daqui fique defaçada
+        //      fazendo com que a mRoomClass daqui fique defassada
 
         if (user.activeRoomId != null) {
             mBlockWithoutRoom.setVisibility(View.GONE);
@@ -193,6 +205,14 @@ public class RoomsFragment extends Fragment {
             if (mMenuOptions != null) {
                 mMenuOptions.clear();
                 mMenuInflater.inflate(R.menu.fragment_rooms_options, mMenuOptions);
+            }
+
+            mRankingName.setText(user.name);
+            mRankingPoints.setText(""+user.activeRoomXp + " pts");
+            if (user.profilePhoto != null ) {
+                Glide.with(this)
+                        .load(user.profilePhoto)
+                        .into(mRankingPhoto);
             }
 
         } else {
@@ -238,6 +258,7 @@ public class RoomsFragment extends Fragment {
     @OnClick(R.id.rooms_ranking_visualize)
     public void openRankingView(Button button) {
         Intent intent = new Intent(mActivity, RankingViewer.class);
+        intent.putExtra("members", (HashMap) mRoomClass.members);
         startActivity(intent);
     }
 
@@ -266,6 +287,7 @@ public class RoomsFragment extends Fragment {
                             mUserClass.activeRoomName = mRoomClass.name;
                             mUserClass.activeRoomId = roomCode;
 
+                            String userName = mUserClass.name;
                             mRoomClass.members.put(uid, mUserClass.activeRoomXp);
 
                             saveRoomInDatabase(mUserClass.activeRoomId);

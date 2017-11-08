@@ -34,6 +34,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
+
             <TextView
                 android:id="@+id/profile_user_name"
                 android:layout_width="wrap_content"
@@ -49,6 +50,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
+
             <TextView
                 android:textColor="@android:color/white"
                 android:id="@+id/profile_ui_level"
@@ -61,6 +63,7 @@
                 android:layout_marginLeft="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginStart="16dp" />
+
             <TextView
                 android:textColor="@android:color/white"
                 android:id="@+id/profile_ui_score"

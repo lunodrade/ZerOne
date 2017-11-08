@@ -54,6 +54,7 @@ public class ResultsActivity extends Activity {
     private String mBookResult;
     private int mBookLevel;
     private int mBookPoints;
+    private int mPomodoroSeconds;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
@@ -94,7 +95,9 @@ public class ResultsActivity extends Activity {
             mBookLevel = extras.getInt("booklevel");
             mBookPoints = extras.getInt("bookpoints");
 
-            Log.d("ResultsActivity", "checkExtras: " + mBookLevel + " | " + mBookPoints);
+            mPomodoroSeconds = extras.getInt("pomodoro");
+
+            Log.d("ResultsActivity", "checkExtras: " + mBookLevel + " | " + mBookPoints + " | " + mPomodoroSeconds);
         }
     }
 

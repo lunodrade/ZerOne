@@ -6,14 +6,20 @@ import android.widget.TextView;
 
 import com.lunodrade.zerone.R;
 
-/**
- * Created by lunodrade on 04/11/2017.
- */
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
-    TextView nameTxt;
+    TextView userPosition;
+    TextView userName;
+    TextView userXp;
+    CircleImageView userPhoto;
+
     public MyViewHolder(View itemView) {
         super(itemView);
-        nameTxt = (TextView) itemView.findViewById(R.id.nameTxt);
+        userPosition = (TextView) itemView.findViewById(R.id.ranking_holder_position);
+        userName = (TextView) itemView.findViewById(R.id.ranking_holder_name);
+        userXp = (TextView) itemView.findViewById(R.id.ranking_holder_xp);
+        userPhoto = (CircleImageView) itemView.findViewById(R.id.ranking_holder_photo);
     }
 }

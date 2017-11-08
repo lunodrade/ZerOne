@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -302,10 +304,14 @@ public class QuestionsFragment extends Fragment {
 
         Log.d("QuestionsFragment", "TexteExtras: " + mActivity.mBookLevel + " | " + mActivity.mBookPoints + " | " + mActivity.mBookTitle);
 
+        int elapsedSeconds = (int) Math.ceil( (SystemClock.elapsedRealtime() -
+                                            mActivity.mPomodoroChronometer.getBase()) / 1000 ) + 1;
+
         intent.putExtra("result", result);
         intent.putExtra("booktitle", mActivity.mBookTitle);
         intent.putExtra("booklevel", mActivity.mBookLevel);
         intent.putExtra("bookpoints", mActivity.mBookPoints);
+        intent.putExtra("pomodoro", elapsedSeconds);
         intent.putExtra("correct", ""+mActivity.mCorrectQuestions);
         intent.putExtra("wrong", ""+mActivity.mWrongQuestions);
 
@@ -349,8 +355,12 @@ public class QuestionsFragment extends Fragment {
                 LinkedTreeMap opt = (LinkedTreeMap) options.get(i);
                 String text = opt.get("content").toString();
                 mTyRadioButton.get(i).setText(text);
+                mTyRadioButton.get(i).setVisibility(View.VISIBLE);
             }
 
+            for (int i = options.size(); i < mTyRadioButton.size(); i++) {
+                mTyRadioButton.get(i).setVisibility(View.GONE);
+            }
 
         } else if (type.equals("chip")) {
             mTyChipBlock.setVisibility(View.VISIBLE);
@@ -500,7 +510,6 @@ public class QuestionsFragment extends Fragment {
         }
         mCheckConfirmButton.setEnabled(enabled);
     }
-
 
 
 

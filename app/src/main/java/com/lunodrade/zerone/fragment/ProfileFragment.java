@@ -147,6 +147,7 @@ public class ProfileFragment extends Fragment {
                     .load(user.profilePhoto)
                     .into(mPhotoImage);
         }
+
         mNameView.setText(user.name);
 
         mScoreView.setText( ""+user.xp );

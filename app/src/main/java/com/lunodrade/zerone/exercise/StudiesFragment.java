@@ -60,6 +60,9 @@ public class StudiesFragment extends Fragment {
         WebView webViewHeroes = (WebView) view.findViewById(R.id.WebViewHeroes);
         webViewHeroes.setBackgroundColor(Color.TRANSPARENT);
 
+        webViewHeroes.getSettings().setLoadWithOverviewMode(true);
+        webViewHeroes.getSettings().setUseWideViewPort(true);
+        webViewHeroes.getSettings().setJavaScriptEnabled(true);
         webViewHeroes.loadUrl("file:///android_asset/" + file + ".html");
     }
 }
