@@ -22,6 +22,7 @@ public class User implements Serializable {
     public String activeRoomId;
     public int activeRoomXp = 0;
     public Map<String, String> roomsCreatedByMe = new HashMap<>();
+    public Map<String, Integer> achievements = new HashMap<>();
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -62,6 +63,7 @@ public class User implements Serializable {
         result.put("activeRoomId", activeRoomId);
         result.put("activeRoomXp", activeRoomXp);
         result.put("roomsCreatedByMe", roomsCreatedByMe);
+        result.put("achievements", achievements);
 
         return result;
     }

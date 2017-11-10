@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -24,6 +25,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,6 +52,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnTouch;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
+import me.toptas.fancyshowcase.FancyShowCaseView;
+import me.toptas.fancyshowcase.FocusShape;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -60,7 +64,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private QuestionsFragment mQuestionsFragment;
     private Map<Integer, LinkedTreeMap> mQuestions;
 
-    private int mPomodoroSecondsIdle = 5 * 1000;       // 5 * 1000 = 5 seconds
+    private int mPomodoroSecondsIdle = 60 * 1000;       // 5 * 1000 = 5 seconds
     public Chronometer mPomodoroChronometer;
 
     public String mBookCode = "";
@@ -88,9 +92,43 @@ public class ExerciseActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.exercise_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
 
+
+
+        /*
+        new FancyShowCaseView.Builder(this)
+                .focusOn(findViewById(R.id.exercise_question_life))
+                .title("Vidas\n\nVocê começa a atividade com 3 vidas. A cada erro você perde " +
+                        "uma vida. Se ficar sem vidas, você termina a atividade sem conclui-lá!")
+                .titleSize(16, TypedValue.COMPLEX_UNIT_SP)
+                .build()
+                .show();
+        */
+        new FancyShowCaseView.Builder(this)
+                .focusOn(mTabLayout)
+                .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                .title("Praticar - Estudar\n\nVocê começa a atividade com 3 vidas. A cada erro você perde " +
+                        "uma vida. Se ficar sem vidas, você termina a atividade sem conclui-lá!")
+                .titleSize(16, TypedValue.COMPLEX_UNIT_SP)
+                .build();
+
+
         mPomodoroChronometer = (Chronometer) findViewById(R.id.exercise_question_pomodoro);
         mPomodoroChronometer.setBase(SystemClock.elapsedRealtime());
         mPomodoroChronometer.start();
+    }
+
+    private int getRelativeLeft(View myView) {
+        if (myView.getParent() == myView.getRootView())
+            return myView.getLeft();
+        else
+            return myView.getLeft() + getRelativeLeft((View) myView.getParent());
+    }
+
+    private int getRelativeTop(View myView) {
+        if (myView.getParent() == myView.getRootView())
+            return myView.getTop();
+        else
+            return myView.getTop() + getRelativeTop((View) myView.getParent());
     }
 
     private void checkExtras(Bundle extras) {

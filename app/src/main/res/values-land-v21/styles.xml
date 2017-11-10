@@ -3,4 +3,10 @@
 
     <style name="AppTheme.ZerOne" parent="AppTheme" />
 
+    <style name="AppTheme.ComumNoActionbar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
 </resources>

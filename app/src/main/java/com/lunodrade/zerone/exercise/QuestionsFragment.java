@@ -10,6 +10,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -41,6 +42,8 @@ import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import butterknife.OnTextChanged;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
+import me.toptas.fancyshowcase.FancyShowCaseView;
+import me.toptas.fancyshowcase.FocusShape;
 
 import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
@@ -361,6 +364,15 @@ public class QuestionsFragment extends Fragment {
             for (int i = options.size(); i < mTyRadioButton.size(); i++) {
                 mTyRadioButton.get(i).setVisibility(View.GONE);
             }
+
+            new FancyShowCaseView.Builder(mActivity)
+                    .focusOn(mTyRadioButton.get(0))
+                    .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                    .title("Praticar - Estudar\n\nVocê começa a atividade com 3 vidas. A cada erro você perde " +
+                            "uma vida. Se ficar sem vidas, você termina a atividade sem conclui-lá!")
+                    .titleSize(16, TypedValue.COMPLEX_UNIT_SP)
+                    .build()
+                    .show();
 
         } else if (type.equals("chip")) {
             mTyChipBlock.setVisibility(View.VISIBLE);

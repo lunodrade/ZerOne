@@ -31,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
 import com.lunodrade.zerone.RankingViewer;
+import com.lunodrade.zerone.achievement.AchievementControl;
+import com.lunodrade.zerone.achievement.TesteNotification;
 import com.lunodrade.zerone.models.Room;
 import com.lunodrade.zerone.models.User;
 
@@ -210,9 +212,13 @@ public class RoomsFragment extends Fragment {
             mRankingName.setText(user.name);
             mRankingPoints.setText(""+user.activeRoomXp + " pts");
             if (user.profilePhoto != null ) {
-                Glide.with(this)
-                        .load(user.profilePhoto)
-                        .into(mRankingPhoto);
+                try {
+                    Glide.with(this)
+                            .load(user.profilePhoto)
+                            .into(mRankingPhoto);
+                } catch (NullPointerException e) {
+                    Log.d("RoomsFragment", "ERRO: " + e.getMessage() + " | " + this.getActivity());
+                }
             }
 
         } else {
@@ -257,9 +263,28 @@ public class RoomsFragment extends Fragment {
 
     @OnClick(R.id.rooms_ranking_visualize)
     public void openRankingView(Button button) {
+        /*
         Intent intent = new Intent(mActivity, RankingViewer.class);
         intent.putExtra("members", (HashMap) mRoomClass.members);
-        startActivity(intent);
+        */
+
+
+        // --------------
+        /*
+        Intent intent = new Intent(mActivity, TesteNotification.class);
+        if (mUserClass != null)
+            intent.putExtra("user", mUserClass);
+            */
+
+
+
+        AchievementControl control = new AchievementControl(mUserClass, mActivity.getApplicationContext());
+        control.unlock("fully_approved");
+        // --------------
+
+
+
+        //startActivity(intent);
     }
 
     private void loadRoom(final String roomCode) {

@@ -32,4 +32,8 @@
     <string name="title_activity_exercise">ExerciseActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+    <!-- ==================================================================================== -->
+    <string name="achievement_fully_approved">Sem errar</string>
+    <string name="achievement_fully_approved_content">Concluiu sem errar questões</string>
+
 </resources>

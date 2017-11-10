@@ -114,6 +114,8 @@
             <!-- ============================================== -->
             <!-- TIPO: INPUT -->
             <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:id="@+id/question_tyinput_block"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

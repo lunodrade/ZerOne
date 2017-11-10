@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <book>
     <question id="1">
-        <type>radio</type>
-        <query>Considere inicialmente um vetor de inteiros como [0, 1, 5, 7]. Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n  \n Qual o valor na posição 5 ao final disso?</query>
-        <option>5</option>
-        <option>11</option>
-        <option>7</option>
-        <option>6</option>
-        <answer>3</answer>
-        <comment_answer>Era a alternativa 4</comment_answer>
+        <type>check</type>
+        <query>De que forma você pode adicionar bibliotecas ao projeto?</query>
+        <option>#define &lt;nome da biblioteca&gt;</option>
+        <option>#include "nome da biblioteca"</option>
+        <option>#include &lt;nome da biblioteca&gt;</option>
+        <option>#adicionar "nome da biblioteca"</option>
+        <answer>1,2</answer>
+        <comment_answer>Resposta correta são opções: 2 e 3. \n Você pode ler sobre isso no capítulo 1.1 do estudo.</comment_answer>
     </question>
     <question id="2">
-        <type>radio</type>
-        <query>Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n Qual o valor na posição 5 ao final disso?</query>
-        <option>Sim</option>
-        <option>Não</option>
-        <answer>0</answer>
-        <comment_answer>Era a alternativa 4</comment_answer>
+        <type>check</type>
+        <query>Em linguagem C, como são aceito os nomes utilizados para referenciar variáveis, constantes e funções definidas pelo usuário?</query>
+        <option>#var_tempo</option>
+        <option>idade2Ele</option>
+        <option>_qtd_gols</option>
+        <option>2time_qtd</option>
+        <answer>1,2</answer>
+        <comment_answer>Resposta correta são opções: 2 e 3. \n Você pode ler sobre isso no capítulo 1.2 do estudo.</comment_answer>
     </question>
     <question id="3">
         <type>radio</type>
-        <query>Considere inicialmente um vetor de inteiros como [0, 1, 5, 7]. Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n  \n Qual o valor na posição 5 ao final disso?</query>
-        <option>5</option>
-        <option>11</option>
-        <option>7</option>
-        <option>6</option>
-        <answer>3</answer>
-        <comment_answer>Era a alternativa 4</comment_answer>
+        <query>Qual das opções NÂO é um tipo dado básico em C?</query>
+        <option>int</option>
+        <option>string</option>
+        <option>char</option>
+        <option>void</option>
+        <answer>1</answer>
+        <comment_answer>Resposta correta é a opção: 2. \n Você pode ler sobre isso no capítulo 1.3 do estudo.</comment_answer>
     </question>
     <question id="4">
         <type>radio</type>
-        <query>Após isso o vetor recebeu o valor 11 na posição 3, e então o valor 6 na posição 4. \n Qual o valor na posição 5 ao final disso?</query>
-        <option>Sim</option>
-        <option>Não</option>
+        <query> Em C, os nomes "cont" e "Cont" NÃO podem ser empregados para representar a mesma variável ao longo de um programa</query>
+        <option>Certo</option>
+        <option>Errado</option>
         <answer>0</answer>
-        <comment_answer>Era a alternativa 4</comment_answer>
+        <comment_answer>A afirmação está CORRETA, afinal C é case sensitive. \n Você pode ler sobre isso no capítulo 1.1 do estudo.</comment_answer>
+    </question>
+    <question id="5">
+        <type>radio</type>
+        <query>O que faz o seguinte programa em C?
+#include &lt;stdio.h&gt;
+main( ) {
+    int i=2;
+    printf(""Valor de i = %i\n"",i);
+}
+        </query>
+        <option>imprime: Valor de i = 2 e pula para a próxima linha;</option>
+        <option>imprime: Valor de i = 2\n;</option>
+        <option>pula para a próxima linha e imprime: Valor de i = 2;</option>
+        <option>nenhuma das alternativas anteriores.</option>
+        <answer>0</answer>
+        <comment_answer>Resposta correta é a opção: 1.</comment_answer>
     </question>
 </book>
