@@ -55,7 +55,7 @@ public class AchievementControl {
         mPackageName = mApplicationContext.getPackageName();
 
         mAchievementUnlocked = new AchievementUnlocked(mApplicationContext);
-        mAchievementUnlocked.setRounded(false).setLarge(false).setTopAligned(true);
+        mAchievementUnlocked.setRounded(false).setLarge(false).setTopAligned(true).setReadingDelay(4000);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,8 @@ public class AchievementControl {
     private void showNotification(String achiev) {
         AchievementData data = new AchievementData();
 
-        data.setTitle(getTitle(achiev));
+        String fullTitle = getTitle(achiev)+ "     (+" + getXp(achiev) + " XP)";
+        data.setTitle(fullTitle);
         data.setSubtitle(getTitle(achiev+"_content"));
         data.setIcon(getIcon(achiev));
         data.setTextColor(Color.WHITE);
@@ -106,9 +107,12 @@ public class AchievementControl {
         } else {
             mUser.achievements.put(achiev, 1);
         }
+
+        mUser.xp += getXp(achiev);
     }
 
     private void saveUserInFirebase() {
+        /*
         Log.d("AchievementControl", "Achievements que possui: " + mUser.achievements);
 
         Map<String, Object> childUpdates = new HashMap<>();
@@ -118,6 +122,16 @@ public class AchievementControl {
 
         childUpdates.put(urlUserAchievement, mUser.achievements);
         mDatabase.updateChildren(childUpdates);
+        */
+        Log.d("AchievementControl", "Achievements que possui: " + mUser.achievements);
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        String uid = mFirebaseUser.getUid();
+
+        String urlUserAchievement = "/users/" + uid;
+
+        childUpdates.put(urlUserAchievement, mUser);
+        mDatabase.updateChildren(childUpdates);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,18 +140,27 @@ public class AchievementControl {
     //
     //////////////////////////////////////////////////////////////////////////////////////////////*/
 
-    private String getTitle(String achiev) {
+    public String getTitle(String achiev) {
+        Log.d("AchievementControl", "ACHIEV NAME = " + achiev);
         int resourceID = mResources.getIdentifier("achievement_"+achiev, "string", mPackageName);
         String resourceString = mResources.getString(resourceID);
 
         return resourceString;
     }
 
-    private Drawable getIcon(String achiev) {
+    public Drawable getIcon(String achiev) {
         int resID = mResources.getIdentifier("achievement_"+achiev, "drawable", mPackageName);
         Drawable resourceIcon = ContextCompat.getDrawable(mApplicationContext, resID);
 
         return resourceIcon;
+    }
+
+    public Integer getXp(String achiev) {
+        Log.d("AchievementControl", "AchievName XP → " + "achievement_"+achiev+"_xp");
+        int resourceID = mResources.getIdentifier("achievement_"+achiev+"_xp", "string", mPackageName);
+        String resourceString = mResources.getString(resourceID);
+
+        return Integer.parseInt(resourceString);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

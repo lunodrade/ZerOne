@@ -1,7 +1,6 @@
 package com.lunodrade.zerone.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -30,9 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
-import com.lunodrade.zerone.RankingViewer;
 import com.lunodrade.zerone.achievement.AchievementControl;
-import com.lunodrade.zerone.achievement.TesteNotification;
 import com.lunodrade.zerone.models.Room;
 import com.lunodrade.zerone.models.User;
 
@@ -266,20 +263,15 @@ public class RoomsFragment extends Fragment {
         /*
         Intent intent = new Intent(mActivity, RankingViewer.class);
         intent.putExtra("members", (HashMap) mRoomClass.members);
+        startActivity(intent);
         */
 
-
-        // --------------
-        /*
-        Intent intent = new Intent(mActivity, TesteNotification.class);
-        if (mUserClass != null)
-            intent.putExtra("user", mUserClass);
-            */
-
-
-
+        //TODO: mudar aqui pra abrir a viewer de ranking
         AchievementControl control = new AchievementControl(mUserClass, mActivity.getApplicationContext());
         control.unlock("fully_approved");
+
+
+
         // --------------
 
 

@@ -2,20 +2,14 @@ package com.lunodrade.zerone.ranking;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.lunodrade.zerone.R;
-import com.lunodrade.zerone.RankingViewer;
-import com.lunodrade.zerone.models.Room;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class RankingAdapter extends RecyclerView.Adapter<MyViewHolder> {
@@ -29,7 +23,7 @@ public class RankingAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.main_line_view, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.item_ranking, parent, false);
         return new MyViewHolder(v);
     }
 

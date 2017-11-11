@@ -1,5 +1,6 @@
 package com.lunodrade.zerone.fragment;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
+import com.lunodrade.zerone.achievement.AchieViewer;
 import com.lunodrade.zerone.models.User;
 
 import java.util.HashMap;
@@ -49,11 +51,15 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.profile_user_score) TextView mScoreView;
     @BindView(R.id.profile_user_room) TextView mRoomView;
 
+    @BindView(R.id.profile_achievement_count) TextView mAchievementCount;
+
     private DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
     private User mUserClass;
+
+    private MainActivity mActivity;
 
     private ValueEventListener mPostListener;
 
@@ -86,11 +92,10 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         //TODO: passar tudo aqui pro createView
 
-
         ButterKnife.bind(this, view);
+        mActivity = (MainActivity) getActivity();
 
         mDatabase =  FirebaseDatabase.getInstance().getReference();
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -159,6 +164,8 @@ public class ProfileFragment extends Fragment {
         } else {
             mRoomView.setText("Sem sala, entre em uma ;)");
         }
+
+        mAchievementCount.setText("" + mUserClass.achievements.size() + " achievs");
     }
 
     /*
@@ -186,6 +193,12 @@ public class ProfileFragment extends Fragment {
         childUpdates.put("/users/" + uid, mUserClass);
 
         mDatabase.updateChildren(childUpdates);
+    }
+
+    @OnClick(R.id.profile_achievement_visualize)
+    public void openAchievementView(Button button) {
+        Intent intent = new Intent(mActivity, AchieViewer.class);
+        startActivity(intent);
     }
 
 }

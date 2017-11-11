@@ -2,8 +2,8 @@
     <string name="app_name">ZerOne</string>
     <string name="title_activity_signed">SignedActivity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="action_settings">Settings</string>
+    <string name="action_walkthrough">Visualizar tutorial</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_journal_found">No Journal Entry Found</string>
     <string name="title_activity_auth_ui">AuthUiActivity</string>
@@ -33,7 +33,15 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- ==================================================================================== -->
+    <string name="welcome">Welcome</string>
+    <string name="done">Done</string>
+    <!-- ==================================================================================== -->
     <string name="achievement_fully_approved">Sem errar</string>
     <string name="achievement_fully_approved_content">Concluiu sem errar questões</string>
+    <string name="achievement_fully_approved_xp">7</string>
+
+    <string name="achievement_test">Segundo achiev</string>
+    <string name="achievement_test_content">Só pra testes mesmo</string>
+    <string name="achievement_test_xp">12</string>
 
 </resources>

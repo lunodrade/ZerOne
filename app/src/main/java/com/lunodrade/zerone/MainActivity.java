@@ -3,6 +3,7 @@ package com.lunodrade.zerone;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Build;
@@ -45,6 +46,7 @@ import com.lunodrade.zerone.fragment.HomeFragment;
 import com.lunodrade.zerone.fragment.ProfileFragment;
 import com.lunodrade.zerone.fragment.RoomsFragment;
 import com.lunodrade.zerone.models.User;
+import com.lunodrade.zerone.walkthrough.WalkthroughActivity;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -75,7 +77,20 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         toolbar.setTitle("Início");
 
-        mDatabase =  FirebaseDatabase.getInstance().getReference();
+
+        SharedPreferences settings = getSharedPreferences("prefs", 0);
+        boolean firstRun = settings.getBoolean("firstRun", false);
+
+        if (firstRun == false) {
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("firstRun", true);
+            editor.commit();
+
+            Intent intent = new Intent(this, WalkthroughActivity.class);
+            startActivity(intent);
+        }
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -84,17 +99,6 @@ public class MainActivity extends AppCompatActivity
         if (resourceId > 0) {
             mBottomBarPixelsSize = resources.getDimensionPixelSize(resourceId);
         }
-
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -119,29 +123,18 @@ public class MainActivity extends AppCompatActivity
                 fragment = new HomeFragment();
 
                 if (tabId == R.id.tab_home) {
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
                     toolbar.setTitle("Início");
                     fragment = new HomeFragment();
-                }
-
-                else if (tabId == R.id.tab_rooms) {
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
-
+                } else if (tabId == R.id.tab_rooms) {
                     toolbar.setTitle("Salas");
                     fragment = new RoomsFragment();
-                }
-                else if (tabId == R.id.tab_profile) {
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
-
+                } else if (tabId == R.id.tab_profile) {
                     toolbar.setTitle("");
                     fragment = new ProfileFragment();
                 }
 
                 Log.v("AAAA", "voltou top");
-                NestedScrollView  nestedScrollView = (NestedScrollView ) findViewById(R.id.myScrollingContent);
+                NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.myScrollingContent);
                 nestedScrollView.fullScroll(View.FOCUS_UP);
 
                 final FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -155,13 +148,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onTabReSelected(@IdRes int tabId) {
                 if (tabId == R.id.tab_rooms) {
-                    // The tab with id R.id.tab_favorites was reselected,
-                    // change your content accordingly.
                 }
-
                 Log.v("AAAA", "voltou top");
 
-                NestedScrollView  nestedScrollView = (NestedScrollView ) findViewById(R.id.myScrollingContent);
+                NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.myScrollingContent);
                 nestedScrollView.fullScroll(View.FOCUS_UP);
             }
         });
@@ -171,15 +161,6 @@ public class MainActivity extends AppCompatActivity
         if (extras != null) {
             mUserClass = (User) extras.getSerializable("user");
         }
-
-        /*
-        if (extras != null) {
-            mUserClass = (User) extras.getSerializable("user");
-            updateInterface(mUserClass);
-        } else {
-            loadDatabase();
-        }
-        */
 
     }
 
@@ -254,24 +235,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_walkthrough) {
+            Intent intent = new Intent(this, WalkthroughActivity.class);
+            startActivity(intent);
             return true;
         }
-
-        /*
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            showSnackbar(R.string.sign_in_cancelled);
-            return true;
-        }
-        */
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -329,15 +300,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-
-        /*
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-        */
 
         } else if (id == R.id.nav_share) {
 
