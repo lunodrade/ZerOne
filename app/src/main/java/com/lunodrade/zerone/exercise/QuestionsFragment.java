@@ -10,9 +10,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -42,8 +40,6 @@ import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import butterknife.OnTextChanged;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
-import me.toptas.fancyshowcase.FancyShowCaseView;
-import me.toptas.fancyshowcase.FocusShape;
 
 import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
@@ -62,7 +58,7 @@ public class QuestionsFragment extends Fragment {
     private ArrayList<Integer> mArrayIndexQuestions;
     private int mQuestionID = -1;
     private int mCurrentIndexQuestions;
-    private static final int MAXIMUM_INDEX_QUESTIONS = 4;
+    private static final int MAXIMUM_INDEX_QUESTIONS = 15;
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,6 +146,8 @@ public class QuestionsFragment extends Fragment {
                 R.id.questions_tycheck_boxD})
     List<CheckBox> mTyCheckBoxes;
 
+    View mView;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                  Métodos da classe
@@ -169,8 +167,8 @@ public class QuestionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_questions, container, false);
-        return view;
+        mView = inflater.inflate(R.layout.fragment_questions, container, false);
+        return mView;
     }
 
     @Override
@@ -223,6 +221,8 @@ public class QuestionsFragment extends Fragment {
     //////////////////////////////////////////////////////////////////////////////////////////////*/
 
     private void showAnswerComment(boolean hitAnswer) {
+        mActivity.hideSoftKeyboard();
+
         mAnswerCommentBlock.setVisibility(View.VISIBLE);
         String comment = "Parabéns, você acertou!";
 
@@ -364,15 +364,6 @@ public class QuestionsFragment extends Fragment {
             for (int i = options.size(); i < mTyRadioButton.size(); i++) {
                 mTyRadioButton.get(i).setVisibility(View.GONE);
             }
-
-            new FancyShowCaseView.Builder(mActivity)
-                    .focusOn(mTyRadioButton.get(0))
-                    .focusShape(FocusShape.ROUNDED_RECTANGLE)
-                    .title("Praticar - Estudar\n\nVocê começa a atividade com 3 vidas. A cada erro você perde " +
-                            "uma vida. Se ficar sem vidas, você termina a atividade sem conclui-lá!")
-                    .titleSize(16, TypedValue.COMPLEX_UNIT_SP)
-                    .build()
-                    .show();
 
         } else if (type.equals("chip")) {
             mTyChipBlock.setVisibility(View.VISIBLE);

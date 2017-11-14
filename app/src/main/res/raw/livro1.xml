@@ -12,7 +12,7 @@
     </question>
     <question id="2">
         <type>check</type>
-        <query>Em linguagem C, como são aceito os nomes utilizados para referenciar variáveis, constantes e funções definidas pelo usuário?</query>
+        <query>Em linguagem C, quais são os identificadores válidos para referenciar variáveis, constantes e funções definidas pelo usuário?</query>
         <option>#var_tempo</option>
         <option>idade2Ele</option>
         <option>_qtd_gols</option>
@@ -32,7 +32,7 @@
     </question>
     <question id="4">
         <type>radio</type>
-        <query> Em C, os nomes "cont" e "Cont" NÃO podem ser empregados para representar a mesma variável ao longo de um programa</query>
+        <query>Em C, os nomes "cont" e "Cont" NÃO podem ser empregados para representar a mesma variável ao longo de um programa</query>
         <option>Certo</option>
         <option>Errado</option>
         <answer>0</answer>
@@ -40,18 +40,367 @@
     </question>
     <question id="5">
         <type>radio</type>
-        <query>O que faz o seguinte programa em C?
+        <query>O que faz o seguinte programa em C ?
+
 #include &lt;stdio.h&gt;
-main( ) {
+main( ){
     int i=2;
-    printf(""Valor de i = %i\n"",i);
-}
-        </query>
+    printf("Valor de i = %i\n",i);
+}</query>
         <option>imprime: Valor de i = 2 e pula para a próxima linha;</option>
         <option>imprime: Valor de i = 2\n;</option>
         <option>pula para a próxima linha e imprime: Valor de i = 2;</option>
         <option>nenhuma das alternativas anteriores.</option>
         <answer>0</answer>
         <comment_answer>Resposta correta é a opção: 1.</comment_answer>
+    </question>
+    <question id="6">
+        <type>input</type>
+        <query>Na questão
+
+r = (float) 9 / 2;
+
+Qual o valor de r?</query>
+        <answer>4.5</answer>
+        <comment_answer>A resposta correta é "4.5", afinal o (float) permite o valor decimal. \n Você pode ler sobre isso no capítulo 1.4 do estudo.</comment_answer>
+    </question>
+    <question id="7">
+        <type>input</type>
+        <query>Na questão
+
+float x = 5 / 2;
+
+Qual o valor de x?</query>
+        <answer>2</answer>
+        <comment_answer>A resposta correta é "2", afinal não existe a declaração de (float), para tratar o valor decimal. \n Você pode ler sobre isso no capítulo 1.4 do estudo.</comment_answer>
+    </question>
+    <question id="8">
+        <type>check</type>
+        <query>Nomes de identificadores podem ser utilizados  em:</query>
+        <option>nome de variável</option>
+        <option>nome de função</option>
+        <option>nome de biblioteca</option>
+        <option>nenhuma das alternativas anteriores.</option>
+        <answer>0,1</answer>
+        <comment_answer>Resposta correta são as opções: 1, 2. \n Você pode ler sobre isso no capítulo 1.2 do estudo.</comment_answer>
+    </question>
+    <question id="9">
+        <type>radio</type>
+        <query>De acordo com o seguinte trecho:
+
+int x = 2;
+void funcao() {
+    int x = 5;
+    printf("%i", x);
+}
+
+Qual valor de x será impresso?</query>
+        <option>2</option>
+        <option>5</option>
+        <answer>1</answer>
+        <comment_answer>Resposta correta é a opção: 2. Pois variáveis locais possuem preferência em relação a variáveis globais. \n Você pode ler sobre isso no capítulo 1.5 do estudo.</comment_answer>
+    </question>
+    <question id="10">
+        <type>check</type>
+        <query>De qual modo se pode definir uma constante em C?</query>
+        <option>#assert PI 3.14</option>
+        <option>#define const</option>
+        <option>#define pi 3.14</option>
+        <option>#assert Const 3.14</option>
+        <answer>2</answer>
+        <comment_answer>Resposta correta é a opção: 3. \n Você pode ler sobre isso no capítulo 1.6 do estudo.</comment_answer>
+    </question>
+    <question id="11">
+        <type>radio</type>
+        <query>Com base no código a seguir:
+
+float valor=136.472;
+printf("\n %08.1f",valor);
+
+Qual seria o resultado obtido?</query>
+        <option>136.4</option>
+        <option>136.472000</option>
+        <option>      136.5</option>
+        <option>000136.5</option>
+        <answer>3</answer>
+        <comment_answer>Resposta correta é a opção: 4. \n Você pode ler sobre isso no capítulo 1.7 do estudo.</comment_answer>
+    </question>
+    <question id="12">
+        <type>radio</type>
+        <query>Com base no código a seguir:
+
+int valor=790;
+printf("\n %-5i",valor);
+
+Qual seria o resultado obtido?</query>
+        <option>-790</option>
+        <option>790</option>
+        <option>00790</option>
+        <option>  790</option>
+        <answer>1</answer>
+        <comment_answer>Resposta correta é a opção: 2. \n Você pode ler sobre isso no capítulo 1.7 do estudo.</comment_answer>
+    </question>
+    <question id="13">
+        <type>radio</type>
+        <query>Qual caractere especial que executa "uma nova linha"?</query>
+        <option>\r</option>
+        <option>\b</option>
+        <option>\t</option>
+        <option>\n</option>
+        <answer>3</answer>
+        <comment_answer>Resposta correta é a opção: 4. \n Você pode ler sobre isso no capítulo 1.8 do estudo.</comment_answer>
+    </question>
+    <question id="14">
+        <type>check</type>
+        <query>Com base no código da linha a seguir:
+
+char nome[10];
+
+Em C, como se atribuiria a essa variável o valor "Texto"?</query>
+        <option>strcpy(nome,"Texto");</option>
+        <option>nome = strcpy("Texto");</option>
+        <option>strcpy("Texto");</option>
+        <option>nome = "Texto";</option>
+        <answer>0</answer>
+        <comment_answer>Resposta correta é a opção: 1. \n Você pode ler sobre isso no capítulo 1.9 do estudo.</comment_answer>
+    </question>
+    <question id="15">
+        <type>radio</type>
+        <query>Com base no código a seguir:
+
+float a, b;
+int valor;
+valor =7;
+a = (float) valor / 2;
+b = valor % 2;
+
+Qual opção é verdadeira?</query>
+        <option>a=3 e b=3.5</option>
+        <option>a=3.5 e b=3</option>
+        <option>a=3 e b=1</option>
+        <option>a=3.5 e b=1</option>
+        <answer>3</answer>
+        <comment_answer>Resposta correta é a opção: 4. \n Você pode ler sobre isso no capítulo 1.10 do estudo.</comment_answer>
+    </question>
+    <question id="16">
+        <type>radio</type>
+        <query>Com base no código a seguir:
+
+int valor=3;
+printf("\n %i", ++valor);
+
+Qual seria o resultado impresso?</query>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>2</option>
+        <answer>1</answer>
+        <comment_answer>Resposta correta é a opção: 2. \n Você pode ler sobre isso no capítulo 1.10 do estudo.</comment_answer>
+    </question>
+    <question id="17">
+        <type>radio</type>
+        <query>Com base no código a seguir:
+
+int valor=3;
+printf("\n %i", valor++);
+
+Qual seria o resultado impresso?</query>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <answer>2</answer>
+        <comment_answer>Resposta correta é a opção: 3. \n Você pode ler sobre isso no capítulo 1.10 do estudo.</comment_answer>
+    </question>
+    <question id="18">
+        <type>radio</type>
+        <query>A declaração de variável em C pode ocorrer no seguinte modelo:
+
+identificador tipo;</query>
+        <option>Certo</option>
+        <option>Errado</option>
+        <answer>1</answer>
+        <comment_answer>A afirmação está ERRADA, pois em C o Tipo vem antes do Nome da variável.</comment_answer>
+    </question>
+    <question id="19">
+        <type>radio</type>
+        <query>Uma string é uma sequência de caracteres armazenada em um vetor de caracteres.</query>
+        <option>Certo</option>
+        <option>Errado</option>
+        <answer>0</answer>
+        <comment_answer>A afirmação está CORRETA pois em C não existe o tipo de dado string como tipos básicos.</comment_answer>
+    </question>
+    <question id="20">
+        <type>radio</type>
+        <query>O seguinte código não apresenta erros:
+
+char nome[] = "Bond";
+nome = "James Bond";
+
+Está correta a afirmação?</query>
+        <option>Certo</option>
+        <option>Errado</option>
+        <answer>1</answer>
+        <comment_answer>A afirmação está ERRADA, pois em C após iniciliazar uma cadeia de caractéres (string), você só pode substituir seu valor usando strcpy(var, texto);</comment_answer>
+    </question>
+    <question id="21">
+        <type>radio</type>
+        <query>Na Linguagem C, os códigos de formatação de tipo de dados NÃO estão corretamente associados na alternativa:</query>
+        <option>int - %i</option>
+        <option>double - %d</option>
+        <option>float - %f</option>
+        <option>nenhuma das alternativas  anteriores.</option>
+        <answer>1</answer>
+        <comment_answer>A formatação de código para o tipo "double" é feita por "%lf". \n Você pode ler sobre isso no capítulo 1.7 do estudo.</comment_answer>
+    </question>
+    <question id="22">
+        <type>radio</type>
+        <query>Com base no código a seguir:
+
+float valor = 9/2;
+printf("%f", ++valor);
+
+Qual seria o resultado impresso?</query>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>2</option>
+        <answer>2</answer>
+        <comment_answer>Resposta correta é a opção: 3. Pois o resultado da divisão é 4, e ele incrementa 1 antes do print. \n Você pode ler sobre isso nos capítulos 1.4 e 1.10 do estudo.</comment_answer>
+    </question>
+    <question id="23">
+        <type>radio</type>
+        <query>Qual caractere especial "\t" faz qual procedimento?</query>
+        <option>retorna ao início da linha</option>
+        <option>avança para uma nova linha</option>
+        <option>insere uma tabulação horizontal</option>
+        <option>apaga o último caractere impresso</option>
+        <answer>1</answer>
+        <comment_answer>Resposta correta é a opção: 2. \n Você pode ler sobre isso no capítulo 1.8 do estudo.</comment_answer>
+    </question>
+    <question id="24">
+        <type>radio</type>
+        <query>Um programa em C sempre começa A EXECUTAR na função default chamada:</query>
+        <option>start()</option>
+        <option>main()</option>
+        <option>program()</option>
+        <option>inicio()</option>
+        <answer>1</answer>
+        <comment_answer>Resposta correta é a opção: 2. \n Você pode ler sobre isso no capítulo 1.1 do estudo.</comment_answer>
+    </question>
+    <question id="25">
+        <type>radio</type>
+        <query>Qual nome da biblioteca padrão de C que incorpora funções ligadas e entrada e saída de dados?</query>
+        <option>studio.h</option>
+        <option>stand.h</option>
+        <option>stdio.h</option>
+        <option>stio.h</option>
+        <answer>2</answer>
+        <comment_answer>Resposta correta é a opção: 3. \n Você pode ler sobre isso no capítulo 1.1 do estudo.</comment_answer>
+    </question>
+    <question id="26">
+        <type>radio</type>
+        <query>Como declarar uma variável em C, que receba a palavra "texto" já no momento da declaração?</query>
+        <option>char nome[10] = "texto";</option>
+        <option>string nome = "texto";</option>
+        <option>char nome[10] = 'texto';</option>
+        <option>string nome[10] = "texto";</option>
+        <answer>0</answer>
+        <comment_answer>Resposta correta é a opção 1. \n Em C não existe string, apenas char[], e apenas na hora de criação você pode inicializar ela por meio de "="</comment_answer>
+    </question>
+    <question id="27">
+        <type>check</type>
+        <query>É uma linha de comentário válido em C:</query>
+        <option>;; linha de comentário</option>
+        <option>// linha de comentário</option>
+        <option># linha de comentário</option>
+        <option>/* linha de comentário */</option>
+        <answer>1,3</answer>
+        <comment_answer>Resposta correta são opções: 2 e 4. \n Você pode ler sobre isso no capítulo 1.11 do estudo.</comment_answer>
+    </question>
+    <question id="28">
+        <type>check</type>
+        <query>Quais alternativas tem como resultado o valor 2?</query>
+        <option>int a = 10 % 4;</option>
+        <option>int a = 2 / 2;</option>
+        <option>int a = 10 / 2;</option>
+        <option>nenhuma das alternativas anteriores.</option>
+        <answer>0,1</answer>
+        <comment_answer>Resposta correta são as opções: 1 e 2. \n Tanto o módulo (% - resto da divisão) de 10 por 4, como o inteiro de 5 /2 (já que não é float) resultam em 2.</comment_answer>
+    </question>
+    <question id="29">
+        <type>radio</type>
+        <query>Bibliotecas são arquivos contendo várias funções que podem ser incorporadas aos programas escritos em C</query>
+        <option>Certo</option>
+        <option>Errado</option>
+        <answer>0</answer>
+        <comment_answer>A afirmação está CORRETA \n Você pode ler sobre isso no capítulo 1.1 do estudo.</comment_answer>
+    </question>
+    <question id="30">
+        <type>radio</type>
+        <query>Com base no código a seguir:
+
+int j=0,k=0;
+k=3;
+j= k++/2;
+
+Qual opção é verdadeira?</query>
+        <option>j=2 e k=4</option>
+        <option>j=2 e k=3</option>
+        <option>j=1.5 e k=4</option>
+        <option>j=1 e k=4</option>
+        <answer>3</answer>
+        <comment_answer>Resposta correta é a opção 4. \n A primeira operação que ocorre é a divisão, que por não ter "(float)" passa o valor 1 ao j, após isso k incrementa 1.</comment_answer>
+    </question>
+    <question id="31">
+        <type>check</type>
+        <query>Em linguagem C, quais são os identificadores válidos para referenciar variáveis, constantes e funções definidas pelo usuário?</query>
+        <option>Tempo</option>
+        <option>_idade</option>
+        <option>VALOR</option>
+        <option>99qtd</option>
+        <answer>0,1,2</answer>
+        <comment_answer>Resposta correta são opções: 1, 2 e 3. \n Você pode ler sobre isso no capítulo 1.2 do estudo.</comment_answer>
+    </question>
+    <question id="32">
+        <type>input</type>
+        <query>Na questão
+
+r = (_____) 7 / 2;
+
+Qual palavra você precisa adicionar dentro dos parênteses para que o valor de r fique como 3.5?</query>
+        <answer>float</answer>
+        <comment_answer>A resposta correta é "float", afinal o (float) permite o valor decimal. \n Você pode ler sobre isso no capítulo 1.4 do estudo.</comment_answer>
+    </question>
+    <question id="33">
+        <type>radio</type>
+        <query>Em C, você pode declarar o nome de uma variável iniciando com uma letra maíuscula?</query>
+        <option>Sim</option>
+        <option>Não</option>
+        <answer>0</answer>
+        <comment_answer>A afirmação está CORRETA, apesar de ser comum o uso de letra maíuscula para constantes, nada o impede de usar para variável. \n Você pode ler sobre isso no capítulo 1.1 do estudo.</comment_answer>
+    </question>
+    <question id="34">
+        <type>radio</type>
+        <query>Considerando a declaração e a inicialização de variáveis em C, qual das opções NÂO é uma declaração correta de variável?</query>
+        <option>int numero = 2;</option>
+        <option>char nome = "Texto";</option>
+        <option>float _ponto = 4;</option>
+        <option>float value = 3.2;</option>
+        <answer>1</answer>
+        <comment_answer>A declaração incorreta é a opção 2. \n Em C ao declarmos uma "string", ela precisa ser feita em forma de cadeia de caracteres. \n char nome[] = "Texto";</comment_answer>
+    </question>
+    <question id="35">
+        <type>radio</type>
+        <query> Em C, você pode declarar uma variável local com o mesmo nome de uma variável de global?</query>
+        <option>Sim</option>
+        <option>Não</option>
+        <answer>0</answer>
+    </question>
+    <question id="36">
+        <type>input</type>
+        <query>Qual caractere especial que executa "uma nova linha"?</query>
+        <answer>\n</answer>
+        <comment_answer>Resposta correta é "\n". \n Você pode ler sobre isso no capítulo 1.8 do estudo.</comment_answer>
     </question>
 </book>

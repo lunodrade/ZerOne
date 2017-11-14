@@ -33,8 +33,8 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- ==================================================================================== -->
-    <string name="welcome">Welcome</string>
-    <string name="done">Done</string>
+    <string name="welcome">Seja Bem-vindo</string>
+    <string name="done">Entendi</string>
     <!-- ==================================================================================== -->
     <string name="achievement_fully_approved">Sem errar</string>
     <string name="achievement_fully_approved_content">Concluiu sem errar questões</string>
@@ -43,5 +43,9 @@
     <string name="achievement_test">Segundo achiev</string>
     <string name="achievement_test_content">Só pra testes mesmo</string>
     <string name="achievement_test_xp">12</string>
+
+    <string name="achievement_first_room">Primeira turma</string>
+    <string name="achievement_first_room_content">Parabéns por entrar em uma turma</string>
+    <string name="achievement_first_room_xp">5</string>
 
 </resources>

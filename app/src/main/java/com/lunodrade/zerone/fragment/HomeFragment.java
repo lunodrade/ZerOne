@@ -3,6 +3,8 @@ package com.lunodrade.zerone.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,9 @@ import com.lunodrade.zerone.bookcards.CardItem;
 import com.lunodrade.zerone.bookcards.CardPagerAdapter;
 import com.lunodrade.zerone.bookcards.ShadowTransformer;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +33,11 @@ import com.lunodrade.zerone.bookcards.ShadowTransformer;
 public class HomeFragment extends Fragment {
 
     private MainActivity mActivity;
+    View mFragmentView;
+
+    private Handler handler;
+    private Runnable handlerTask;
+    private Boolean booksLoaded = false;
 
     private ViewPager mViewPager;
     private CardPagerAdapter mCardAdapter;
@@ -37,48 +47,79 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        mFragmentView = inflater.inflate(R.layout.fragment_home, container, false);
 
         mActivity = (MainActivity) getActivity();
 
-        mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        return mFragmentView;
+    }
 
-        mCardAdapter = new CardPagerAdapter(this, mActivity.getUserClass().getLvlForXP());
-        mCardAdapter.addCardItem(new CardItem("livro1", 0, 16, R.string.book_title_1, R.string.book_desc_1));
-        mCardAdapter.addCardItem(new CardItem("livro2", 5, 50, R.string.book_title_2, R.string.book_desc_2));
-        mCardAdapter.addCardItem(new CardItem("livro3", 15, 150, R.string.book_title_3, R.string.book_desc_2));
-        mCardAdapter.addCardItem(new CardItem("livro4", 20, 250, R.string.book_title_4, R.string.book_desc_3));
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
-        mCardShadowTransformer.enableScaling(true);
+        loadHomeWithDelay();
+    }
 
-        mViewPager.setAdapter(mCardAdapter);
-        mViewPager.setPageTransformer(false, mCardShadowTransformer);
-        mViewPager.setOffscreenPageLimit(3);
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        //TODO: carregar o último feito
-        //mViewPager.setCurrentItem(2);
+        loadHomeWithDelay();
+    }
 
-        /*
-        mViewPager.postDelayed(new Runnable()
+    void loadHomeWithDelay(){
+        handler = new Handler();
+        handlerTask = new Runnable()
         {
             @Override
-            public void run()
-            {
-                mViewPager.setCurrentItem(2, true);
-            }
-        }, 500);
-        */
+            public void run() {
+                loadHomeBooks();
 
-        return view;
+                if (booksLoaded == false)
+                    handler.postDelayed(handlerTask, 1000);
+            }
+        };
+        handlerTask.run();
     }
 
 
+    public void loadHomeBooks() {
+        if (mActivity.getUserClass() != null) {
+            booksLoaded = true;
+
+            mViewPager = (ViewPager) mFragmentView.findViewById(R.id.viewPager);
+            mCardAdapter = new CardPagerAdapter(this, mActivity.getUserClass().getLvlForXP());
+            mCardAdapter.addCardItem(new CardItem("livro1", 0, 16, R.string.book_title_1, R.string.book_desc_1));
+            mCardAdapter.addCardItem(new CardItem("livro2", 5, 50, R.string.book_title_2, R.string.book_desc_2));
+            mCardAdapter.addCardItem(new CardItem("livro3", 15, 150, R.string.book_title_3, R.string.book_desc_2));
+            mCardAdapter.addCardItem(new CardItem("livro4", 20, 250, R.string.book_title_4, R.string.book_desc_3));
+
+            mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
+            mCardShadowTransformer.enableScaling(true);
+
+            mViewPager.setAdapter(mCardAdapter);
+            mViewPager.setPageTransformer(false, mCardShadowTransformer);
+            mViewPager.setOffscreenPageLimit(3);
+
+            //TODO: carregar o último feito
+            //mViewPager.setCurrentItem(2);
+            /*
+            mViewPager.postDelayed(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    mViewPager.setCurrentItem(2, true);
+                }
+            }, 500);
+            */
+        }
+    }
 
     public void clickBookButton(int position) {
 

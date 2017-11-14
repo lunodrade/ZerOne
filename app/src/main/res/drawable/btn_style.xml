@@ -3,7 +3,7 @@
 
     <!-- Disable background -->
     <item android:state_enabled="false"
-        android:color="@android:color/darker_gray"/>
+        android:color="@color/darker_gray"/>
 
     <!-- Enabled background -->
     <item android:color="@color/colorAccent"/>

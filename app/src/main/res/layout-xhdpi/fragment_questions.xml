@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <!-- BLOCO DE COMENTÀRIO SOBRE A RESPOSTA DA QUESTÃO -->
     <LinearLayout
         android:id="@+id/questions_answercomment_block"
@@ -191,7 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:text="Alternativas"
+                    android:text="Marque apenas uma alternativa"
                     android:textSize="12sp" />
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -304,7 +303,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:text="Alternativas"
+                    android:text="Marque todas alternativas corretas"
                     android:textSize="12sp" />
 
                 <LinearLayout

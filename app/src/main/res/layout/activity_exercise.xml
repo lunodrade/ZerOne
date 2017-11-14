@@ -23,12 +23,20 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
-                android:id="@+id/exercise_question_life"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
                 android:layout_gravity="right"
-                android:text="3♥"
+                android:drawableRight="@drawable/ic_favorite_black_24dp"
+                android:drawableTint="@color/material_red_700"
+                />
+
+            <TextView
+                android:id="@+id/exercise_question_life"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="3"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
             <TextView

@@ -1,6 +1,7 @@
 package com.lunodrade.zerone.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lunodrade.zerone.MainActivity;
 import com.lunodrade.zerone.R;
+import com.lunodrade.zerone.RankingViewer;
 import com.lunodrade.zerone.achievement.AchievementControl;
 import com.lunodrade.zerone.models.Room;
 import com.lunodrade.zerone.models.User;
@@ -260,23 +262,14 @@ public class RoomsFragment extends Fragment {
 
     @OnClick(R.id.rooms_ranking_visualize)
     public void openRankingView(Button button) {
-        /*
+
         Intent intent = new Intent(mActivity, RankingViewer.class);
         intent.putExtra("members", (HashMap) mRoomClass.members);
         startActivity(intent);
-        */
-
-        //TODO: mudar aqui pra abrir a viewer de ranking
+        /*
         AchievementControl control = new AchievementControl(mUserClass, mActivity.getApplicationContext());
         control.unlock("fully_approved");
-
-
-
-        // --------------
-
-
-
-        //startActivity(intent);
+        */
     }
 
     private void loadRoom(final String roomCode) {
@@ -300,6 +293,10 @@ public class RoomsFragment extends Fragment {
                         String uid = mFirebaseUser.getUid();
                         
                         if (mRoomClass.members.containsKey(uid) == false) {
+
+                            AchievementControl control = new AchievementControl(mUserClass, mActivity.getApplicationContext());
+                            control.unlock("first_room", true);
+
                             Log.d("RoomsFragment", "onDataChange: INICIALIZANDO USUÁRIO");
                             mUserClass.activeRoomName = mRoomClass.name;
                             mUserClass.activeRoomId = roomCode;

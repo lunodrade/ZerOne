@@ -249,7 +249,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="50dp"
         android:padding="40dp"
-        android:text="Você acabou errando muitas questões dessa vez, e portanto teve a ativadade interrompida. Encare isso como uma oportunidade de revisar e se sair melhor em uma próxima vez ;)"
+        android:text="Você acabou errando muitas questões dessa vez, e portanto sua atividade foi interrompida. \n\nEncare isso como uma oportunidade de revisar e se sair melhor em uma próxima vez ;)"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

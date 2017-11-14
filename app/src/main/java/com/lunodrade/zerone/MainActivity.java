@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -30,6 +32,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,10 +60,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static Fragment fragment;
+    private static Fragment mActualFragment;
     private FragmentManager fragmentManager;
 
-    private User mUserClass;
+    private User mUserClass = null;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
@@ -73,13 +77,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences settings = getSharedPreferences("prefs", 0);
+        boolean firstRun = settings.getBoolean("firstRun", false);
+
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Início");
-
-
-        SharedPreferences settings = getSharedPreferences("prefs", 0);
-        boolean firstRun = settings.getBoolean("firstRun", false);
 
         if (firstRun == false) {
             SharedPreferences.Editor editor = settings.edit();
@@ -120,17 +123,18 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onTabSelected(@IdRes int tabId) {
 
-                fragment = new HomeFragment();
+                mActualFragment = new HomeFragment();
+                toolbar.setTitle("Início");
 
                 if (tabId == R.id.tab_home) {
                     toolbar.setTitle("Início");
-                    fragment = new HomeFragment();
+                    mActualFragment = new HomeFragment();
                 } else if (tabId == R.id.tab_rooms) {
                     toolbar.setTitle("Salas");
-                    fragment = new RoomsFragment();
+                    mActualFragment = new RoomsFragment();
                 } else if (tabId == R.id.tab_profile) {
                     toolbar.setTitle("");
-                    fragment = new ProfileFragment();
+                    mActualFragment = new ProfileFragment();
                 }
 
                 Log.v("AAAA", "voltou top");
@@ -139,7 +143,7 @@ public class MainActivity extends AppCompatActivity
 
                 final FragmentTransaction transaction = fragmentManager.beginTransaction();
                 //transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-                transaction.replace(R.id.contentContainer, fragment);
+                transaction.replace(R.id.contentContainer, mActualFragment);
                 transaction.commit();
             }
         });
@@ -167,6 +171,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+
+        checkDrawOverlaysPermission();
 
         mHasNavBar = hasNavBar(this);
 
@@ -318,5 +324,68 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+
+
+
+
+
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("TesteNotification", "onActivityResult: GAMIFICATION - " + (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE));
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
+            if (!Settings.canDrawOverlays(this)) {
+                // You don't have permission
+                checkPermission();
+            }
+            else
+            {
+                //do as per your logic
+                //TODO: usuário permitiu
+            }
+        }
+    }
+
+    public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 5469;
+    public void checkDrawOverlaysPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                new MaterialDialog.Builder(this)
+                    .title("O ZerOne precisa de sua permissão")
+                    .content("Você precisa conceder permissão para visualizar os achievements. " +
+                            "Se permitir, será levado diretamente ao local do android para fazer isso, " +
+                            "então é só ativar e clicar em voltar.")
+                    .positiveText("Permitir")
+                    .negativeText("Cancelar")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            checkPermission();
+                        }
+                    })
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                        }
+                    })
+                    .show();
+            }
+        }
+    }
+
+    public void checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
+            }
+        }
     }
 }

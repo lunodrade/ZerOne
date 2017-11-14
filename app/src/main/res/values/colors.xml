@@ -40,6 +40,9 @@
     <color name="material_purple_a700">#AA00FF</color>
     <color name="material_red_a200">#FF5252</color>
 
+    <color name="material_red_700">#d32f2f</color>
+    <color name="darker_gray">#9E9E9E</color>
+
     <color name="v2_editorbar_icon_tint_light">#71899f</color>
     <color name="v2_editorbar_page_text_normal">#626262</color>
     <color name="color_transparent">#00000000</color>

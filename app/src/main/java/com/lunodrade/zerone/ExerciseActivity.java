@@ -52,8 +52,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnTouch;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
-import me.toptas.fancyshowcase.FancyShowCaseView;
-import me.toptas.fancyshowcase.FocusShape;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -64,7 +62,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private QuestionsFragment mQuestionsFragment;
     private Map<Integer, LinkedTreeMap> mQuestions;
 
-    private int mPomodoroSecondsIdle = 60 * 1000;       // 5 * 1000 = 5 seconds
+    private int mPomodoroSecondsIdle = 90 * 1000;       // 5 * 1000 = 5 seconds
     public Chronometer mPomodoroChronometer;
 
     public String mBookCode = "";
@@ -91,26 +89,6 @@ public class ExerciseActivity extends AppCompatActivity {
 
         mTabLayout = (TabLayout) findViewById(R.id.exercise_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
-
-
-
-        /*
-        new FancyShowCaseView.Builder(this)
-                .focusOn(findViewById(R.id.exercise_question_life))
-                .title("Vidas\n\nVocê começa a atividade com 3 vidas. A cada erro você perde " +
-                        "uma vida. Se ficar sem vidas, você termina a atividade sem conclui-lá!")
-                .titleSize(16, TypedValue.COMPLEX_UNIT_SP)
-                .build()
-                .show();
-        */
-        new FancyShowCaseView.Builder(this)
-                .focusOn(mTabLayout)
-                .focusShape(FocusShape.ROUNDED_RECTANGLE)
-                .title("Praticar - Estudar\n\nVocê começa a atividade com 3 vidas. A cada erro você perde " +
-                        "uma vida. Se ficar sem vidas, você termina a atividade sem conclui-lá!")
-                .titleSize(16, TypedValue.COMPLEX_UNIT_SP)
-                .build();
-
 
         mPomodoroChronometer = (Chronometer) findViewById(R.id.exercise_question_pomodoro);
         mPomodoroChronometer.setBase(SystemClock.elapsedRealtime());
@@ -311,7 +289,7 @@ public class ExerciseActivity extends AppCompatActivity {
         int lifeLeft = 3 - mWrongQuestions;
 
         questionNumber.setText(""+numberText);
-        questionLife.setText(""+lifeLeft+"♥");
+        questionLife.setText(""+lifeLeft);
     }
 
 
