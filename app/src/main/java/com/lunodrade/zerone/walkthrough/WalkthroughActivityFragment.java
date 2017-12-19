@@ -198,7 +198,7 @@ public class WalkthroughActivityFragment extends Fragment implements ViewPager.O
     //
     //////////////////////////////////////////////////////////////////////////////////////////////*/
     private void initSections() {
-        lbl2DoVersion.setText("| v1.0");
+        lbl2DoVersion.setText("| v1.1");
         WalkthroughSection section = new WalkthroughSection();
 
         section.sectionTitle = "Zerone";

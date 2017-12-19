@@ -177,7 +177,7 @@ public class QuestionsFragment extends Fragment {
 
         ButterKnife.bind(this, view);
         mActivity = (ExerciseActivity) getActivity();
-        mActivity.attachKeyboardListeners();
+        //mActivity.attachKeyboardListeners();
 
         mCurrentIndexQuestions = 0;
 

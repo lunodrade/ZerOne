@@ -224,6 +224,8 @@ public class ExerciseActivity extends AppCompatActivity {
     //
     //////////////////////////////////////////////////////////////////////////////////////////////*/
 
+    /*
+
     private ViewTreeObserver.OnGlobalLayoutListener keyboardLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
         public void onGlobalLayout() {
@@ -276,6 +278,8 @@ public class ExerciseActivity extends AppCompatActivity {
             rootLayout.getViewTreeObserver().removeGlobalOnLayoutListener(keyboardLayoutListener);
         }
     }
+
+    */
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //

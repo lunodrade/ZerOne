@@ -48,7 +48,7 @@ main( ){
     printf("Valor de i = %i\n",i);
 }</query>
         <option>imprime: Valor de i = 2 e pula para a próxima linha;</option>
-        <option>imprime: Valor de i = 2\n;</option>
+        <option>imprime: Valor de i = 2;</option>
         <option>pula para a próxima linha e imprime: Valor de i = 2;</option>
         <option>nenhuma das alternativas anteriores.</option>
         <answer>0</answer>
@@ -170,7 +170,7 @@ Em C, como se atribuiria a essa variável o valor "Texto"?</query>
 
 float a, b;
 int valor;
-valor =7;
+valor = 7;
 a = (float) valor / 2;
 b = valor % 2;
 
@@ -186,7 +186,7 @@ Qual opção é verdadeira?</query>
         <type>radio</type>
         <query>Com base no código a seguir:
 
-int valor=3;
+int valor = 3;
 printf("\n %i", ++valor);
 
 Qual seria o resultado impresso?</query>
@@ -201,7 +201,7 @@ Qual seria o resultado impresso?</query>
         <type>radio</type>
         <query>Com base no código a seguir:
 
-int valor=3;
+int valor = 3;
 printf("\n %i", valor++);
 
 Qual seria o resultado impresso?</query>
@@ -257,14 +257,14 @@ Está correta a afirmação?</query>
         <type>radio</type>
         <query>Com base no código a seguir:
 
-float valor = 9/2;
+float valor = 9 / 2;
 printf("%f", ++valor);
 
 Qual seria o resultado impresso?</query>
-        <option>3</option>
+        <option>4.5</option>
         <option>4</option>
         <option>5</option>
-        <option>2</option>
+        <option>5.5</option>
         <answer>2</answer>
         <comment_answer>Resposta correta é a opção: 3. Pois o resultado da divisão é 4, e ele incrementa 1 antes do print. \n Você pode ler sobre isso nos capítulos 1.4 e 1.10 do estudo.</comment_answer>
     </question>
@@ -275,8 +275,8 @@ Qual seria o resultado impresso?</query>
         <option>avança para uma nova linha</option>
         <option>insere uma tabulação horizontal</option>
         <option>apaga o último caractere impresso</option>
-        <answer>1</answer>
-        <comment_answer>Resposta correta é a opção: 2. \n Você pode ler sobre isso no capítulo 1.8 do estudo.</comment_answer>
+        <answer>2</answer>
+        <comment_answer>Resposta correta é a opção: 3. \n Você pode ler sobre isso no capítulo 1.8 do estudo.</comment_answer>
     </question>
     <question id="24">
         <type>radio</type>
@@ -322,11 +322,11 @@ Qual seria o resultado impresso?</query>
         <type>check</type>
         <query>Quais alternativas tem como resultado o valor 2?</query>
         <option>int a = 10 % 4;</option>
-        <option>int a = 2 / 2;</option>
+        <option>int a = 5 / 2;</option>
         <option>int a = 10 / 2;</option>
         <option>nenhuma das alternativas anteriores.</option>
         <answer>0,1</answer>
-        <comment_answer>Resposta correta são as opções: 1 e 2. \n Tanto o módulo (% - resto da divisão) de 10 por 4, como o inteiro de 5 /2 (já que não é float) resultam em 2.</comment_answer>
+        <comment_answer>Resposta correta são as opções: 1 e 2. \n Tanto o módulo (% - resto da divisão) de 10 por 4, como o inteiro de 5 / 2 (já que não é float) resultam em 2.</comment_answer>
     </question>
     <question id="29">
         <type>radio</type>
@@ -341,11 +341,11 @@ Qual seria o resultado impresso?</query>
         <query>Com base no código a seguir:
 
 int j=0,k=0;
-k=3;
-j= k++/2;
+k = 3;
+j = k++ / 2;
 
 Qual opção é verdadeira?</query>
-        <option>j=2 e k=4</option>
+        <option>j=1 e k=3</option>
         <option>j=2 e k=3</option>
         <option>j=1.5 e k=4</option>
         <option>j=1 e k=4</option>
@@ -392,10 +392,11 @@ Qual palavra você precisa adicionar dentro dos parênteses para que o valor de 
     </question>
     <question id="35">
         <type>radio</type>
-        <query> Em C, você pode declarar uma variável local com o mesmo nome de uma variável de global?</query>
+        <query>Em C, você pode declarar uma variável local com o mesmo nome de uma variável de global?</query>
         <option>Sim</option>
         <option>Não</option>
         <answer>0</answer>
+        <comment_answer>Você pode declarar, porém a de variável local sempre terá prioridade na leitura.</comment_answer>
     </question>
     <question id="36">
         <type>input</type>

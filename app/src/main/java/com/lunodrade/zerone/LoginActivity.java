@@ -235,4 +235,10 @@ public class LoginActivity extends AppCompatActivity {
     private void showSnackbar(@StringRes int errorMessageRes) {
         Snackbar.make(mRootView, errorMessageRes, Snackbar.LENGTH_LONG).show();
     }
+
+    public List<String> getFacebookPermissions() {
+        List<String> result = new ArrayList<>();
+        //result.add(Scopes.DRIVE_FILE);
+        return result;
+    }
 }
